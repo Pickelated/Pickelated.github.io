@@ -1,2 +1,1 @@
-# pickelated.github.io jaefiojafioajfoiaejoaijfaoij
-pickelated
+# pickelated
