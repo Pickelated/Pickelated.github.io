@@ -1,7 +1,8 @@
 .heading {
+  display: block;
   background-color: #e3fcff;
   color: blue;
-  font-size: 24px;
+  font-size: 32px;
   text-align: center;
   font-family: "Trebuchet MS", Tahoma, sans-serif;
   text-align: center;
@@ -18,7 +19,7 @@
 
 h2 {
   background-color: #e3fcff;
-  font-size: 32px;
+  font-size: 24px;
   text-align: center;
   font-family: "Trebuchet MS", Tahoma, sans-serif;
   text-align: center;
@@ -29,12 +30,12 @@ h2 {
   display: flex;
   background: #e3fcff;
   color: white;
-  font-size: 24px;
+  font-size: 32px;
   text-align: center;
   font-family: "Trebuchet MS", Tahoma, sans-serif;
   justify-content: space-evenly;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 35px;
+  margin-right: 35px;
 }
 
 .footer {
