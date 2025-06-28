@@ -7,16 +7,6 @@
   text-align: center;
 }
 
-.hello {
-  display: flex;
-  background: #e3fcff;
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  font-family: "Trebuchet MS", Tahoma, sans-serif;
-  justify-content: space-evenly;
-}
-
 /* h1 {
   background-color: #e3fcff;
   font-size: 32px;
@@ -33,6 +23,16 @@ h2 {
   font-family: "Trebuchet MS", Tahoma, sans-serif;
   text-align: center;
   color: #34ebcc;
+}
+
+.hello {
+  display: flex;
+  background: #e3fcff;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  font-family: "Trebuchet MS", Tahoma, sans-serif;
+  justify-content: space-evenly;
 }
 
 .footer {
