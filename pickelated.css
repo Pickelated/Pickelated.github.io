@@ -33,6 +33,8 @@ h2 {
   text-align: center;
   font-family: "Trebuchet MS", Tahoma, sans-serif;
   justify-content: space-evenly;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .footer {
