@@ -8,6 +8,7 @@
 }
 
 .hello {
+  display: flex
   background-color: #e3fcff;
   color: white;
   font-size: 24px;
