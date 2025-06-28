@@ -7,6 +7,15 @@
   text-align: center;
 }
 
+.hello {
+  background-color: #e3fcff;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  font-family: "Trebuchet MS", Tahoma, sans-serif;
+  text-align: center;
+}
+
 /* h1 {
   background-color: #e3fcff;
   font-size: 32px;
