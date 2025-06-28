@@ -8,13 +8,13 @@
 }
 
 .hello {
-  display: flex
-  background-color: #e3fcff;
+  display: flex;
+  background: #e3fcff;
   color: white;
   font-size: 24px;
   text-align: center;
   font-family: "Trebuchet MS", Tahoma, sans-serif;
-  text-align: center;
+  justify-content: space-evenly;
 }
 
 /* h1 {
