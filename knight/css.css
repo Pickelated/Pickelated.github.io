@@ -5,6 +5,7 @@ body {
 }
 
 canvas {
+  position: static;
   display: flex;
   justify-content: center;
 }
