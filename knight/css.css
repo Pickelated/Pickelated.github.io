@@ -2,11 +2,12 @@ body {
   display: block;
   margin: auto auto;
   position: absolute;
-  background: none;
+  background: black;
   z-index: -1;
 }
 
 .helo {
+  position: absolute;
   z-index: 0;
 }
 
