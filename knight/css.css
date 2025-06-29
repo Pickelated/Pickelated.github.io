@@ -2,7 +2,7 @@ body {
   display: block;
   margin: auto auto;
   position: absolute;
-  background: black;
+  background: none;
   z-index: -1;
 }
 
