@@ -6,6 +6,9 @@ let y = 200;
 const speed = 2;
 const keys = {};
 
+const sprite = new Image();
+sprite.src = "player.png";
+
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
 });
