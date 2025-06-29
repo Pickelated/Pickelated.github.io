@@ -1,3 +1,9 @@
 body {
+  position: absolute;
   background: black;
+  z-index: -1;
+}
+
+.helo {
+  z-index: 0;
 }
