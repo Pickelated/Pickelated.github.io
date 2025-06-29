@@ -24,6 +24,7 @@ h1 {
 }
 
 footer {
+  display: block;
   margin-top: auto;
   font-size: 14px;
 }
