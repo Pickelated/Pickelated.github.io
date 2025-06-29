@@ -26,8 +26,7 @@ function update() {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "blue";
-  ctx.fillRect(x, y, 20, 20);
+  ctx.drawImage(sprite, x, y, 32, 32); // Draw sprite at (x, y) with width & height
 }
 
 function gameLoop() {
