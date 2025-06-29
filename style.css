@@ -3,4 +3,9 @@ body {
   font-size: 32px;
   background: #219ebc;
   color: #ffb703;
+  text-align: center;
+}
+
+h1 {
+  font-weight: bold;
 }
