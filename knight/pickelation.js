@@ -18,12 +18,11 @@ document.addEventListener("keyup", (e) => {
 });
 
 function update() {
+  speed = 4;
   if (keys["k"] || keys["x"]) {
     speed = 2;
   }
-  if (!(keys["k"] || keys["x"])) {
-    speed = 4;
-  }
+  
   if ((keys["arrowup"] || keys["w"]) && y > 0) {
     y -= speed;
   }
