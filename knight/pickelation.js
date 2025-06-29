@@ -21,13 +21,13 @@ function update() {
   if ((keys["arrowup"] || keys["w"]) && y > 0) {
     y -= speed;
   }
-  if ((keys["arrowdown"] || keys["s"]) && y + spriteHeight < canvas.height) {
+  if ((keys["arrowdown"] || keys["s"]) && y + 24 < canvas.height) { // spriteHeight (24) <
     y += speed;
   }
   if ((keys["arrowleft"] || keys["a"]) && x > 0) {
     x -= speed;
   }
-  if ((keys["arrowright"] || keys["d"]) && x + spriteWidth < canvas.width) {
+  if ((keys["arrowright"] || keys["d"]) && x + 24 < canvas.width) { // spriteWidth (24) <
     x += speed;
   }
 }
