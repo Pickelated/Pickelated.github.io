@@ -20,3 +20,19 @@ h2 {
   padding: 15px;
   margin: 16px auto;
 }
+
+a:link {
+  color: #023047;
+}
+
+a:visited {
+  color: #023047;
+}
+
+a:hover {
+  color: #219ebc;
+}
+
+a:active {
+  color: #023047;
+}
