@@ -1,13 +1,12 @@
 body {
-  display: block;
-  margin: auto;
   position: absolute;
   background: black;
   z-index: -1;
 }
 
-.helo {
+canvas {
+  display: block;
+  margin: auto;
   position: absolute;
   z-index: 0;
 }
-
