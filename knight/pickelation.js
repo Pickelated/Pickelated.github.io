@@ -1,3 +1,26 @@
+const bgMusic = new Audio("knife.mp3");
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
+
+let musicStarted = false;
+
+function startMusicOnKey(e) {
+  const allowedKeys = [
+    "KeyW", "KeyA", "KeyS", "KeyD",
+    "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"
+  ];
+
+  if (allowedKeys.includes(e.code) && !musicStarted) {
+    bgMusic.play().catch((err) => console.error("Music blocked:", err));
+    musicStarted = true;
+    document.removeEventListener("keydown", startMusicOnKey);
+  }
+}
+
+document.addEventListener("keydown", startMusicOnKey);
+
+//
+
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
