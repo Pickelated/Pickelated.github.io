@@ -5,8 +5,8 @@ body {
 }
 
 canvas {
-  display: block;
-  margin: auto;
+  display: flex;
+  justify-content: center;
   position: absolute;
   z-index: 0;
 }
