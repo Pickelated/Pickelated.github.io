@@ -7,7 +7,7 @@ const speed = 2;
 const keys = {};
 
 const sprite = new Image();
-sprite.src = "player.png";
+sprite.src = "soul.png";
 
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
