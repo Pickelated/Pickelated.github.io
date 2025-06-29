@@ -1,6 +1,6 @@
 body {
   display: block;
-  margin: auto auto;
+  margin: auto;
   position: absolute;
   background: black;
   z-index: -1;
