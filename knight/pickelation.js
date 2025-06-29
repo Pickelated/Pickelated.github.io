@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-let x = 200;
+let x = 100;
 let y = 200;
 const speed = 4;
 const keys = {};
