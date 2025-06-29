@@ -7,6 +7,4 @@ body {
 canvas {
   display: flex;
   justify-content: center;
-  position: absolute;
-  z-index: 0;
 }
