@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-let x = 100;
+let x = 200;
 let y = 200;
 const speed = 4;
 const keys = {};
@@ -18,10 +18,10 @@ document.addEventListener("keyup", (e) => {
 });
 
 function update() {
-  speed = 4;
-  if (keys["k"] || keys["x"]) {
-    speed = 2;
-  }
+  // speed = 4;
+  // if (keys["k"] || keys["x"]) {
+  //   speed = 2;
+  // }
   
   if ((keys["arrowup"] || keys["w"]) && y > 0) {
     y -= speed;
