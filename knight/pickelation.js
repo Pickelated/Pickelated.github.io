@@ -18,15 +18,23 @@ document.addEventListener("keyup", (e) => {
 });
 
 function update() {
-  if (keys["arrowup"] || keys["w"]) y -= speed;
-  if (keys["arrowdown"] || keys["s"]) y += speed;
-  if (keys["arrowleft"] || keys["a"]) x -= speed;
-  if (keys["arrowright"] || keys["d"]) x += speed;
+  if ((keys["arrowup"] || keys["w"]) && y > 0) {
+    y -= speed;
+  }
+  if ((keys["arrowdown"] || keys["s"]) && y + spriteHeight < canvas.height) {
+    y += speed;
+  }
+  if ((keys["arrowleft"] || keys["a"]) && x > 0) {
+    x -= speed;
+  }
+  if ((keys["arrowright"] || keys["d"]) && x + spriteWidth < canvas.width) {
+    x += speed;
+  }
 }
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(sprite, x, y, 32, 32); // Draw sprite at (x, y) with width & height
+  ctx.drawImage(sprite, x, y, 24, 24); // Draw sprite at (x, y) with width & height
 }
 
 function gameLoop() {
