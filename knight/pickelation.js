@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 let x = 200;
 let y = 200;
-const speed = 2;
+const speed = 5;
 const keys = {};
 
 const sprite = new Image();
