@@ -43,4 +43,6 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+sprite.onload = () => {
+  gameLoop();
+};
