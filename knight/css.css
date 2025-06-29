@@ -1,7 +1,7 @@
 body {
-  position: absolute;
   background: black;
-  z-index: -1;
+  display: flex;
+  justify-content: center;
 }
 
 canvas {
