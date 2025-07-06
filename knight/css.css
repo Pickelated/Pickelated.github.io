@@ -1,3 +1,18 @@
+@font-face {
+  font-family: deltarune;
+  src: assets/deltarune.otf;
+}
+
+@font-face {
+  font-family: small;
+  src: assets/small.otf;
+}
+
+@font-face {
+  font-family: title;
+  src: assets/title.ttf;
+}
+
 body {
   background: black;
   display: flex;
