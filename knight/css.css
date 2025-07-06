@@ -20,6 +20,14 @@ body {
   align-items: center;
 }
 
+h1 {
+  font-family: deltarune;
+}
+
+p {
+  font-family: deltarune;
+}
+
 canvas {
   
 }
