@@ -14,18 +14,18 @@
 }
 
 body {
-/*   background: black; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: black;
+  text-align: center;
 }
 
 h1 {
   font-family: deltarune;
+  color: white;
 }
 
 p {
   font-family: deltarune;
+  color: white;
 }
 
 canvas {
