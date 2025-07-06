@@ -1,16 +1,16 @@
 @font-face {
   font-family: deltarune;
-  src: assets/deltarune.otf;
+  src: url("assets/deltarune.otf");
 }
 
 @font-face {
   font-family: small;
-  src: assets/small.otf;
+  src: url("assets/small.otf");
 }
 
 @font-face {
   font-family: title;
-  src: assets/title.ttf;
+  src: url("assets/title.ttf");
 }
 
 body {
