@@ -30,7 +30,7 @@ p {
   color: white;
 }
 
-select {
+#select {
   display: block;
   margin-top: auto;
   margin-bottom: 100px;
