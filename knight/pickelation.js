@@ -8,7 +8,7 @@ document.addEventListener('keydown', (event) => {
     document.getElementById("soul").style.top = "355px";
     z = 2;
   }
-  if (event.key === 'z' && z == 2) {
+  else if (event.key === 'z' && z == 2) {
     document.getElementById("soul").style.top = "315px";
     z = 1;
   }
