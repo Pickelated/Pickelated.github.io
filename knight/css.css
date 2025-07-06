@@ -22,11 +22,12 @@ h1 {
   font-size: 64px;
   font-family: title;
   color: white;
+  margin: 350px;
 }
 
 p {
   font-size: 32px;
-  margin: 5px;
+  margin: 6px;
   font-family: deltarune;
   color: white;
 }
