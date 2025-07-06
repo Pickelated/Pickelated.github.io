@@ -19,15 +19,22 @@ body {
 }
 
 h1 {
-  font-family: deltarune;
+  font-size: 64px;
+  font-family: title;
   color: white;
 }
 
 p {
+  font-size: 32px;
   font-family: deltarune;
   color: white;
 }
 
+select {
+  display: block;
+  margin-top: auto;
+  margin-bottom: 100px;
+}
 canvas {
   
 }
