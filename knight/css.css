@@ -21,8 +21,7 @@ body {
 #soul {
   position: absolute;
   width: 24px;
-  top: 315px;
-  right: 775px;
+  right: 59%;
 }
 
 h1 {
@@ -42,12 +41,13 @@ p {
 
 #select {
   text-align: left;
+  position: relative;
   display: block;
   width: 100px;
   margin-left: auto;
   margin-right: auto;
 }
 
-canvas {
+/* canvas {
   
-}
+} */
