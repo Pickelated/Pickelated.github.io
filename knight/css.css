@@ -18,10 +18,23 @@ body {
   text-align: center;
 }
 
+#select {
+  text-align: left;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #soul {
   position: absolute;
   width: 24px;
-  right: 59%;
+  top: 5px;
+  right: 103px;
+}
+
+#alignment {
+  position: relative;
+  display: static;
 }
 
 h1 {
@@ -39,14 +52,7 @@ p {
   color: white;
 }
 
-#select {
-  text-align: left;
-  position: relative;
-  display: block;
-  width: 100px;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 
 /* canvas {
   
