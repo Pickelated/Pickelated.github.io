@@ -5,7 +5,7 @@ document.addEventListener('keydown', (event) => {
 
   
   if (event.key === 'z' && z == 1) {
-    document.getElementById("soul").style.top = "355px";
+    document.getElementById("soul").style.top = "360.5px";
     z = 2;
   }
   else if (event.key === 'z' && z == 2) {
