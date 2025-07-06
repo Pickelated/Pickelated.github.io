@@ -31,10 +31,15 @@ p {
 }
 
 #select {
+  text-align: left;
   display: block;
+  width: 100px;
   margin-top: auto;
   margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 canvas {
   
 }
