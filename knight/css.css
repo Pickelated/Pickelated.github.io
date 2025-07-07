@@ -37,8 +37,8 @@ body {
 #ssoul {
   position: absolute;
   width: 24px;
-  top: 52px;
-  left: 230px;
+  top: 53px;
+  left: 92px;
   image-rendering: pixelated;
   z-index: 1;
 }
@@ -79,10 +79,13 @@ p {
 }
 
 #topload {
-  position: relative;
   display: flex;
   justify-content: center;
   margin-top: 25px;
+}
+
+#loadoutoffset {
+  position: relative;
 }
 
 #krisThumb {
