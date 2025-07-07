@@ -30,6 +30,17 @@ body {
   width: 24px;
   top: 5px;
   right: 103px;
+  image-rendering: pixelated;
+  z-index: 1;
+}
+
+#ssoul {
+  position: absolute;
+  width: 24px;
+  top: 52px;
+  left: 230px;
+  image-rendering: pixelated;
+  z-index: 1;
 }
 
 #alignment {
@@ -50,6 +61,55 @@ p {
   margin: 8px;
   font-family: deltarune;
   color: white;
+}
+
+#title {
+
+}
+
+#loadout {
+  display: none;
+}
+
+#quitloadout {
+  position: absolute;
+  font-family: small;
+  font-size: 24px;
+  top: 0px;
+}
+
+#topload {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+#krisThumb {
+  margin: 15px 130px;
+  width: 95px;
+  image-rendering: pixelated;
+  border: 4px solid #00A2E8;
+  border-radius: 2px;
+  padding: 5px 8px;
+}
+
+#susieThumb {
+  margin: 15px 130px;
+  width: 95px;
+  image-rendering: pixelated;
+  border: 4px solid #EA79C8;
+  border-radius: 2px;
+  padding: 6px 10px;
+}
+
+#ralseiThumb {
+  margin: 15px 130px;
+  width: 95px;
+  image-rendering: pixelated;
+  border: 4px solid #B5E61D;
+  border-radius: 2px;
+  padding: 5px 8px;
 }
 
 
