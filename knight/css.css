@@ -16,6 +16,7 @@
 body {
   background: black;
   text-align: center;
+  cursor: none;
 }
 
 #select {
