@@ -136,6 +136,7 @@ function loadoutMenu() {
       menuingg = true;
       document.getElementById("susieThumb").style.filter = "grayscale(1)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(1)";
+      document.getElementById("playerHud").src="assets/krisHud.png";
 
       souly += 85;
       soulx += 305;
@@ -151,7 +152,8 @@ function loadoutMenu() {
       menuingg = true;
       document.getElementById("krisThumb").style.filter = "grayscale(1)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(1)";
-      
+      document.getElementById("playerHud").src="assets/susieHud.png";
+
       souly += 85;
       soulx -= 75;
       document.getElementById("ssoul").style.top = souly + "px";
@@ -166,6 +168,7 @@ function loadoutMenu() {
       menuingg = true;
       document.getElementById("krisThumb").style.filter = "grayscale(1)";
       document.getElementById("susieThumb").style.filter = "grayscale(1)";
+      document.getElementById("playerHud").src="assets/ralseiHud.png";
     
       souly += 85;
       soulx -= 455;
