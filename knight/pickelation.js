@@ -82,6 +82,49 @@ const kris = new charEquip(WoodBlade, placeholder, placeholder);
 const susie = new charEquip(ManeAx, placeholder, placeholder);
 const ralsei = new charEquip(RedScarf, placeholder, placeholder);
 
+const Spookysword = new equipment("Spookysword", 2, 0 ,0);
+const BounceBlade = new equipment("BounceBlade", 2, 1, 0);
+const Trefoil = new equipment("Trefoil", 4, 0, 0);
+const MechaSaber = new equipment("MechaSaber", 4, 0, 0);
+const Saber10 = new equipment("Saber10", 6, 0, 0);
+const TwistedSwd = new equipment("TwistedSwd", 16, 0, 0);
+
+const BraveAx = new equipment("BraveAx", 2, 0, 0);
+const AutoAxe = new equipment("AutoAxe", 0, 0, 0);
+const Devilsknife = new equipment("Devilsknife", 5, 0, 4); // -10 tp rude buster
+const ToxicAxe = new equipment("ToxicAxe", 6, 0, 0);
+
+const Ragger = new equipment("Ragger", 2, 0, 0);
+const DaintyScarf = new equipment("DaintyScarf", 0, 0, 2);
+const FiberScarf = new equipment("FiberScarf", 2, 0, 2);
+const FlexScarf = new equipment("FlexScarf", 4, 0, 1);
+const Ragger2 = new equipment("Ragger2", 5, 0, -1);
+const PuppetScarf = new equipment("PuppetScarf", 10, 0, -6);
+
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+// const = new equipment("", 0, 0, 0);
+
+
 function krisSetEquipmentNames() {
   document.getElementById("weapon").innerHTML = kris.returnWeapon().returnName();
   document.getElementById("armor1").innerHTML = kris.returnArmor1().returnName();
