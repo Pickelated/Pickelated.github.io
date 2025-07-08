@@ -13,14 +13,92 @@ const audMove = new Audio("assets/menumove.wav");
 const audSelect = new Audio("assets/menuselect.wav");
 const bossMusic = new Audio("assets/knife.mp3");
 
-document.addEventListener('keydown', (event) => {
-  console.log(`Key pressed: ${event.key}`);
-  console.log(`Key code: ${event.code}`);
 
-  loadoutMenu();
-  mainMenu();
+class charEquip {
 
-});
+  constructor(weapon, armor1, armor2) {
+    this.weapon = weapon;
+    this.armor1 = armor1;
+    this.armor2 = armor2;
+  }
+
+  setWeapon(weapon) {
+    this.weapon = weapon;
+  }
+
+  setArmor1(armor1) {
+    this.armor1 = armor1;
+  }
+
+  setArmor2(armor2) {
+    this.armor2 = armor2;
+  }
+
+  returnWeapon() {
+    return this.weapon;
+  }
+
+  returnArmor1() {
+    return this.armor1;
+  }
+
+  returnArmor2() {
+    return this.armor2;
+  }
+}
+
+class equipment {
+
+  constructor(name, atk, def, mag) {
+    this.name = name;
+    this.atk = atk;
+    this.def = def;
+    this.mag = mag;
+  }
+
+  returnName() {
+    return this.name;
+  }
+
+  returnAtk() {
+    return this.atk;
+  }
+
+  returnDef() {
+    return this.def;
+  }
+
+  returnMag() {
+    return this.mag;
+  }
+}
+
+const placeholder = new equipment("...", 0, 0, 0);
+const WoodBlade = new equipment("WoodBlade", 1, 0, 0);
+const ManeAx = new equipment("ManeAx", 0, 0, 0);
+const RedScarf = new equipment("RedScarf", 0, 0, 0);
+
+const kris = new charEquip(WoodBlade, placeholder, placeholder);
+const susie = new charEquip(ManeAx, placeholder, placeholder);
+const ralsei = new charEquip(RedScarf, placeholder, placeholder);
+
+function krisSetEquipmentNames() {
+  document.getElementById("weapon").innerHTML = kris.returnWeapon().returnName();
+  document.getElementById("armor1").innerHTML = kris.returnArmor1().returnName();
+  document.getElementById("armor2").innerHTML = kris.returnArmor2().returnName();
+}
+
+function susieSetEquipmentNames() {
+  document.getElementById("weapon").innerHTML = susie.returnWeapon().returnName();
+  document.getElementById("armor1").innerHTML = susie.returnArmor1().returnName();
+  document.getElementById("armor2").innerHTML = susie.returnArmor2().returnName();
+}
+
+function ralseiSetEquipmentNames() {
+  document.getElementById("weapon").innerHTML = ralsei.returnWeapon().returnName();
+  document.getElementById("armor1").innerHTML = ralsei.returnArmor1().returnName();
+  document.getElementById("armor2").innerHTML = ralsei.returnArmor2().returnName();
+}
 
 function mainMenu() {
   if (mainmenu == true) {
@@ -72,6 +150,11 @@ function loadoutMenu() {
       document.getElementById("loadout").style.display = "none";
       document.getElementById("ssoul").style.top = "53px";
       document.getElementById("ssoul").style.left = "92px";
+
+      document.getElementById("playerHud").src="assets/krisHud.png";
+      document.getElementById("weapon").innerHTML = "...";
+      document.getElementById("armor1").innerHTML = "...";
+      document.getElementById("armor2").innerHTML = "...";
 
       audSelect.play();
       audSelect.currentTime = 0;
@@ -143,6 +226,8 @@ function loadoutMenu() {
       document.getElementById("ssoul").style.top = souly + "px";
       document.getElementById("ssoul").style.left = soulx + "px";
 
+      krisSetEquipmentNames();
+
       audSelect.play();
       audSelect.currentTime = 0;
     }
@@ -159,6 +244,8 @@ function loadoutMenu() {
       document.getElementById("ssoul").style.top = souly + "px";
       document.getElementById("ssoul").style.left = soulx + "px";
 
+      susieSetEquipmentNames();
+
       audSelect.play();
       audSelect.currentTime = 0;
     }
@@ -174,6 +261,8 @@ function loadoutMenu() {
       soulx -= 455;
       document.getElementById("ssoul").style.top = souly + "px";
       document.getElementById("ssoul").style.left = soulx + "px";
+
+      ralseiSetEquipmentNames();
       
       audSelect.play();
       audSelect.currentTime = 0;
@@ -205,3 +294,13 @@ function equipmentMenu() {
   }
   }
 }
+
+
+document.addEventListener('keydown', (event) => {
+  console.log(`Key pressed: ${event.key}`);
+  console.log(`Key code: ${event.code}`);
+
+  loadoutMenu();
+  mainMenu();
+
+});
