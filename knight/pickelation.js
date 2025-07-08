@@ -98,6 +98,9 @@ function loadoutMenu() {
       document.getElementById("susieThumb").style.filter = "grayscale(1)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(1)";
 
+      souly += 300;
+      document.getElementById("ssoul").style.top = souly + "px";
+
       audSelect.play();
       audSelect.currentTime = 0;
     }
