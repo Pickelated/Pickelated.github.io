@@ -145,6 +145,17 @@ p {
   top: -15px;
 }
 
+#equipequipAlign {
+  font-size: 26px;
+  display: flex;
+  margin: 24px 0;
+  justify-content: center;
+}
+
+.equipColumn {
+  margin: 0 115px;
+}
+
 /* canvas {
   
 } */

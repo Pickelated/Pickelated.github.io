@@ -87,19 +87,19 @@ const BounceBlade = new equipment("BounceBlade", 2, 1, 0);
 const Trefoil = new equipment("Trefoil", 4, 0, 0);
 const MechaSaber = new equipment("MechaSaber", 4, 0, 0);
 const Saber10 = new equipment("Saber10", 6, 0, 0);
-const TwistedSwd = new equipment("TwistedSwd", 16, 0, 0);
+const TwistedSwd = new equipment("TwistedSwd", 16, 0, 0); //odd
 
 const BraveAx = new equipment("BraveAx", 2, 0, 0);
 const AutoAxe = new equipment("AutoAxe", 0, 0, 0);
 const Devilsknife = new equipment("Devilsknife", 5, 0, 4); // -10 tp rude buster
-const ToxicAxe = new equipment("ToxicAxe", 6, 0, 0);
+const ToxicAxe = new equipment("ToxicAxe", 6, 0, 0); //odd
 
 const Ragger = new equipment("Ragger", 2, 0, 0);
 const DaintyScarf = new equipment("DaintyScarf", 0, 0, 2);
 const FiberScarf = new equipment("FiberScarf", 2, 0, 2);
 const FlexScarf = new equipment("FlexScarf", 4, 0, 1);
 const Ragger2 = new equipment("Ragger2", 5, 0, -1);
-const PuppetScarf = new equipment("PuppetScarf", 10, 0, -6);
+const PuppetScarf = new equipment("PuppetScarf", 10, 0, -6); //odd
 
 const Mannequin = new equipment("Mannequin", 0, 0, 0); // ???
 const AmberCard = new equipment("AmberCard", 0, 1, 0);
@@ -125,6 +125,11 @@ const TensionBow = new equipment("TensionBow", 0, 2, 0); // +10% graze tp
 const TennaTie = new equipment("TennaTie", 0, 5, -2);
 const Dealmaker = new equipment("Dealmaker", 0, 5, 5); // +$$$
 const ShadowMantle = new equipment("ShadowMantle", 0, 3, 0); // -66% dark/star dmg
+
+let arrKrisWeapon = [[]];
+let arrSusieWeapon = [[]];
+let arrRalseiWeapon = [[]];
+let arrEquipment = [[],[],[]];
 
 
 function krisSetEquipmentNames() {
