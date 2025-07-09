@@ -124,7 +124,7 @@ const Jevilstail = new equipment("Jevilstail", 2, 2, 2);
 const TensionBow = new equipment("TensionBow", 0, 2, 0); // +10% graze tp
 const TennaTie = new equipment("TennaTie", 0, 5, -2);
 const Dealmaker = new equipment("Dealmaker", 0, 5, 5); // +$$$
-const ShadowMantle = new equipment("ShadowMantle", 0, 2, 0); // -66% dark/star dmg
+const ShadowMantle = new equipment("ShadowMantle", 0, 3, 0); // -66% dark/star dmg
 
 
 function krisSetEquipmentNames() {
