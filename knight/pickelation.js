@@ -11,6 +11,7 @@ let menuingg = false; //equip
 let menuinggg = false; //equip equip
 let arrHorizontal = 0; // [0][]
 let arrVertical = 0; // [][0]
+let check = 0; //HATE
 let mainmenu = true;
 let loadoutmenu = false;
 
@@ -273,6 +274,7 @@ function mainMenu() {
     audSelect.currentTime = 0;
     souly = 53; //px
     soulx = 92; //px
+    krisSetEquipmentNames();
   }
   if ((event.key === "z" || event.key === "j") && z == 1) {
     alert("WHAT");
@@ -314,6 +316,7 @@ function loadoutMenu() {
       document.getElementById("krisThumb").style.filter = "grayscale(0)";
       document.getElementById("susieThumb").style.filter = "grayscale(0)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(0)";
+      resetEquipment();
     }
     else if ((event.key === 'x' || event.key === 'k') && menuing == true && menuingg == false && x == 2) { //sus leave
       menuing = false;
@@ -326,6 +329,7 @@ function loadoutMenu() {
       document.getElementById("krisThumb").style.filter = "grayscale(0)";
       document.getElementById("susieThumb").style.filter = "grayscale(0)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(0)";
+      resetEquipment();
     }
     else if ((event.key === 'x' || event.key === 'k') && menuing == true && menuingg == false && x == 3) { //ral leave
       menuing = false;
@@ -338,6 +342,7 @@ function loadoutMenu() {
       document.getElementById("krisThumb").style.filter = "grayscale(0)";
       document.getElementById("susieThumb").style.filter = "grayscale(0)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(0)";
+      resetEquipment();
     }
 
     equipmentMenuingMenu();
@@ -349,6 +354,14 @@ function loadoutMenu() {
       audMove.play();
       audMove.currentTime = 0;
       document.getElementById("ssoul").style.left = soulx + "px";              // TOP menu header thingy kris susie ralsei
+      if (x == 2) {
+        susieSetEquipmentNames();
+        document.getElementById("playerHud").src="assets/susieHud.png";
+      }
+      else if (x == 3) {
+        ralseiSetEquipmentNames();
+        document.getElementById("playerHud").src="assets/ralseiHud.png";
+      }
     }
     if ((event.key === 'ArrowLeft' || event.key === 'a') && x > 1 && menuing == false && menuingg == false) { // same ^
       soulx -= 380;
@@ -356,23 +369,26 @@ function loadoutMenu() {
       audMove.play();
       audMove.currentTime = 0;
       document.getElementById("ssoul").style.left = soulx + "px";
+      if (x == 1) {
+        krisSetEquipmentNames();
+        document.getElementById("playerHud").src="assets/krisHud.png";
+      }
+      else if (x == 2) {
+        susieSetEquipmentNames();
+        document.getElementById("playerHud").src="assets/susieHud.png";
+      }
     }
     if ((event.key === "z" || event.key === "j") && menuing == false && menuingg == false && x == 1) { //krs select
       
       menuing = true;
       document.getElementById("susieThumb").style.filter = "grayscale(1)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(1)";
-      document.getElementById("playerHud").src="assets/krisHud.png";
+      
 
       souly += 85;
       soulx += 305;
       document.getElementById("ssoul").style.top = souly + "px";
       document.getElementById("ssoul").style.left = soulx + "px";
-
-      krisSetEquipmentNames();
-
-      console.log(soulx);
-      console.log(souly);
 
       audSelect.play();
       audSelect.currentTime = 0;
@@ -382,17 +398,13 @@ function loadoutMenu() {
       menuing = true;
       document.getElementById("krisThumb").style.filter = "grayscale(1)";
       document.getElementById("ralseiThumb").style.filter = "grayscale(1)";
-      document.getElementById("playerHud").src="assets/susieHud.png";
+      
 
       souly += 85;
       soulx -= 75;
       document.getElementById("ssoul").style.top = souly + "px";
       document.getElementById("ssoul").style.left = soulx + "px";
 
-      susieSetEquipmentNames();
-
-      console.log(soulx);
-      console.log(souly);
 
       audSelect.play();
       audSelect.currentTime = 0;
@@ -402,18 +414,35 @@ function loadoutMenu() {
       menuing = true;
       document.getElementById("krisThumb").style.filter = "grayscale(1)";
       document.getElementById("susieThumb").style.filter = "grayscale(1)";
-      document.getElementById("playerHud").src="assets/ralseiHud.png";
     
       souly += 85;
       soulx -= 455;
       document.getElementById("ssoul").style.top = souly + "px";
       document.getElementById("ssoul").style.left = soulx + "px";
 
-      ralseiSetEquipmentNames();
-      
-      console.log(soulx);
-      console.log(souly);
+      audSelect.play();
+      audSelect.currentTime = 0;
+    }
 
+    if (event.key === "c" || event.key === "l") { // reset
+      if (x == 1) {
+        kris.setWeapon(WoodBlade);
+        kris.setArmor1(placeholder);
+        kris.setArmor2(placeholder);
+        krisSetEquipmentNames();
+      }
+      else if (x == 2) {
+        susie.setWeapon(ManeAx);
+        susie.setArmor1(placeholder);
+        susie.setArmor2(placeholder);
+        susieSetEquipmentNames();
+      }
+      else if (x == 3) {
+        ralsei.setWeapon(RedScarf);
+        ralsei.setArmor1(placeholder);
+        ralsei.setArmor2(placeholder);
+        ralseiSetEquipmentNames();
+      }
       audSelect.play();
       audSelect.currentTime = 0;
     }
@@ -446,45 +475,59 @@ function equipmentMenu() {
 
 function equipmentMenuMenu() {
   if (menuing == true && menuingg == false) {
-    if (event.key === 'z' || event.key === 'j') {
-      if (xx == 1 && x == 1) {
-        showKrisWeapons();
-        equipmentMenuMenuing();
+    if (check == 0) {
+      if (event.key === 'z' || event.key === 'j') {
+        if (xx == 1 && x == 1) {
+          showKrisWeapons();
+          equipmentMenuMenuing();
+          document.getElementById("weapon").style.color = "yellow";
+          audSelect.play();
+          audSelect.currentTime = 0;
+        }
+        else if (xx == 1 && x == 2) {
+          showSusieWeapons();
+          equipmentMenuMenuing();
+          document.getElementById("weapon").style.color = "yellow";
+          audSelect.play();
+          audSelect.currentTime = 0;
+        }
+        else if (xx == 1 && x == 3) {
+          showRalseiWeapons();
+          equipmentMenuMenuing();
+          document.getElementById("weapon").style.color = "yellow";
+          audSelect.play();
+          audSelect.currentTime = 0;
+        }
+        if (!(xx == 1)) {
+          showEquipment();
+          equipmentMenuMenuing();
+          audSelect.play();
+          audSelect.currentTime = 0;
 
-        audSelect.play();
-        audSelect.currentTime = 0;
+          if (xx == 2) {
+            document.getElementById("armor1").style.color = "yellow";
+          }
+          else if (xx == 3) {
+            document.getElementById("armor2").style.color = "yellow";
+          }
+        }
       }
-      else if (xx == 1 && x == 2) {
-        showSusieWeapons();
-        equipmentMenuMenuing();
-        audSelect.play();
-        audSelect.currentTime = 0;
-      }
-      else if (xx == 1 && x == 3) {
-        showRalseiWeapons();
-        equipmentMenuMenuing();
-        audSelect.play();
-        audSelect.currentTime = 0;
-      }
-      if (!(xx == 1)) {
-        showEquipment();
-        equipmentMenuMenuing();
-        audSelect.play();
-        audSelect.currentTime = 0;
-      }
+    }
+    else if (check == 1) {
+      check = 0;
     }
   }
 }
 
 function equipmentMenuMenuing() {
-  menuing = false;
-  menuingg = true;
-  souly += 161 - offset;
-  yoffset += 161;
-  soulx -= 292;
-  xoffset += 292;
-  document.getElementById("ssoul").style.top = souly + "px";
-  document.getElementById("ssoul").style.left = soulx + "px";
+    menuing = false;
+    menuingg = true;
+    souly += 161 - offset;
+    yoffset += 161;
+    soulx -= 292;
+    xoffset -= 292;
+    document.getElementById("ssoul").style.top = souly + "px";
+    document.getElementById("ssoul").style.left = soulx + "px";
 }
 
 function equipmentMenuingMenu() {
@@ -527,7 +570,7 @@ function equipmentMenuingMenu() {
     }
 
     if ((event.key === "x" || event.key === "k")) {
-      soulx += xoffset;
+      soulx -= xoffset;
       souly -= yoffset - offset;
       document.getElementById("ssoul").style.left = soulx + "px";
       document.getElementById("ssoul").style.top = souly + "px";
@@ -537,6 +580,10 @@ function equipmentMenuingMenu() {
       yoffset = 0;
       arrHorizontal = 0;
       arrVertical = 0;
+
+      document.getElementById("weapon").style.color = "white";
+      document.getElementById("armor1").style.color = "white";
+      document.getElementById("armor2").style.color = "white";
     }
 
 
@@ -553,8 +600,7 @@ function equipmentMenuingMenu() {
         }
         krisSetEquipmentNames();
       }
-
-      if (x == 2) {
+      else if (x == 2) {
         if (xx == 1) {
           susie.setWeapon(arrSusieWeapon[arrHorizontal][arrVertical]);
         }
@@ -566,8 +612,7 @@ function equipmentMenuingMenu() {
         }
         susieSetEquipmentNames();
       }
-
-      if (x == 3) {
+      else if (x == 3) {
         if (xx == 1) {
           ralsei.setWeapon(arrRalseiWeapon[arrHorizontal][arrVertical]);
         }
@@ -579,7 +624,7 @@ function equipmentMenuingMenu() {
         }
         ralseiSetEquipmentNames();
       }
-      soulx += xoffset;
+      soulx -= xoffset;
       souly -= yoffset - offset;
       document.getElementById("ssoul").style.left = soulx + "px";
       document.getElementById("ssoul").style.top = souly + "px";
@@ -589,6 +634,10 @@ function equipmentMenuingMenu() {
       yoffset = 0;
       arrHorizontal = 0;
       arrVertical = 0;
+      check = 1;
+      document.getElementById("weapon").style.color = "white";
+      document.getElementById("armor1").style.color = "white";
+      document.getElementById("armor2").style.color = "white";
 
       audSelect.play();
       audSelect.currentTime = 0;
