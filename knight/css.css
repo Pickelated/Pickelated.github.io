@@ -16,7 +16,7 @@
 body {
   background: black;
   text-align: center;
-  cursor: none;
+  /* cursor: none; */
 }
 
 #select {
@@ -74,6 +74,7 @@ p {
 
 #quitloadout {
   position: absolute;
+  text-align: left;
   font-family: small;
   font-size: 24px;
   top: 0px;
@@ -146,14 +147,17 @@ p {
 }
 
 #equipequipAlign {
-  font-size: 26px;
   display: flex;
-  margin: 24px 0;
   justify-content: center;
+  margin-top: 24px;
 }
 
-.equipColumn {
-  margin: 0 115px;
+.fontfixsize {
+  font-size: 26px;
+}
+
+.AAA {
+  color: black;
 }
 
 /* canvas {
