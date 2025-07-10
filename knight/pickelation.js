@@ -9,6 +9,8 @@ let souly = 1; //default soul y pos
 let menuing = false; //playerequip
 let menuingg = false; //equip
 let menuinggg = false; //equip equip
+let arrHorizontal = 0; // [0][]
+let arrVertical = 0; // [][0]
 let mainmenu = true;
 let loadoutmenu = false;
 
@@ -284,8 +286,7 @@ function mainMenu() {
 
 function loadoutMenu() {
   if (loadoutmenu == true) {
-    equipmentMenu();
-    if ((event.key === 'x' || event.key === 'k') && menuing == false) { // exit loadout
+    if ((event.key === 'x' || event.key === 'k') && menuing == false && menuingg == false) { // exit loadout
       loadoutmenu = false;
       mainmenu = true;
 
@@ -339,21 +340,24 @@ function loadoutMenu() {
       document.getElementById("ralseiThumb").style.filter = "grayscale(0)";
     }
 
-    if ((event.key === 'ArrowRight' || event.key === 'd') && x < 3 && menuing == false) {
+    equipmentMenuingMenu();
+    equipmentMenu();
+    
+    if ((event.key === 'ArrowRight' || event.key === 'd') && x < 3 && menuing == false && menuingg == false) {
       soulx += 380;
       x++;
       audMove.play();
       audMove.currentTime = 0;
       document.getElementById("ssoul").style.left = soulx + "px";              // TOP menu header thingy kris susie ralsei
     }
-    if ((event.key === 'ArrowLeft' || event.key === 'a') && x > 1 && menuing == false) { // same ^
+    if ((event.key === 'ArrowLeft' || event.key === 'a') && x > 1 && menuing == false && menuingg == false) { // same ^
       soulx -= 380;
       x--;
       audMove.play();
       audMove.currentTime = 0;
       document.getElementById("ssoul").style.left = soulx + "px";
     }
-    if ((event.key === "z" || event.key === "j") && menuing == false && x == 1) { //krs select
+    if ((event.key === "z" || event.key === "j") && menuing == false && menuingg == false && x == 1) { //krs select
       
       menuing = true;
       document.getElementById("susieThumb").style.filter = "grayscale(1)";
@@ -367,10 +371,13 @@ function loadoutMenu() {
 
       krisSetEquipmentNames();
 
+      console.log(soulx);
+      console.log(souly);
+
       audSelect.play();
       audSelect.currentTime = 0;
     }
-    if ((event.key === "z" || event.key === "j") && menuing == false && x == 2) { //sus select
+    if ((event.key === "z" || event.key === "j") && menuing == false && menuingg == false &&  x == 2) { //sus select
       
       menuing = true;
       document.getElementById("krisThumb").style.filter = "grayscale(1)";
@@ -384,10 +391,13 @@ function loadoutMenu() {
 
       susieSetEquipmentNames();
 
+      console.log(soulx);
+      console.log(souly);
+
       audSelect.play();
       audSelect.currentTime = 0;
     }
-    if ((event.key === "z" || event.key === "j") && menuing == false && x == 3) { //ral select
+    if ((event.key === "z" || event.key === "j") && menuing == false && menuingg == false &&  x == 3) { //ral select
       
       menuing = true;
       document.getElementById("krisThumb").style.filter = "grayscale(1)";
@@ -401,6 +411,9 @@ function loadoutMenu() {
 
       ralseiSetEquipmentNames();
       
+      console.log(soulx);
+      console.log(souly);
+
       audSelect.play();
       audSelect.currentTime = 0;
     }
@@ -437,18 +450,27 @@ function equipmentMenuMenu() {
       if (xx == 1 && x == 1) {
         showKrisWeapons();
         equipmentMenuMenuing();
+
+        audSelect.play();
+        audSelect.currentTime = 0;
       }
       else if (xx == 1 && x == 2) {
         showSusieWeapons();
         equipmentMenuMenuing();
+        audSelect.play();
+        audSelect.currentTime = 0;
       }
       else if (xx == 1 && x == 3) {
         showRalseiWeapons();
         equipmentMenuMenuing();
+        audSelect.play();
+        audSelect.currentTime = 0;
       }
       if (!(xx == 1)) {
         showEquipment();
         equipmentMenuMenuing();
+        audSelect.play();
+        audSelect.currentTime = 0;
       }
     }
   }
@@ -457,12 +479,121 @@ function equipmentMenuMenu() {
 function equipmentMenuMenuing() {
   menuing = false;
   menuingg = true;
-  souly += 77 - offset;
-  yoffset += 200;
-  soulx -= 598;
-  xoffset += 200;
+  souly += 161 - offset;
+  yoffset += 161;
+  soulx -= 292;
+  xoffset += 292;
   document.getElementById("ssoul").style.top = souly + "px";
   document.getElementById("ssoul").style.left = soulx + "px";
+}
+
+function equipmentMenuingMenu() {
+  if (menuingg == true) {
+    if ((event.key === 'ArrowDown' || event.key === 's') && arrVertical < 7) { // menu nav
+      souly += 42;
+      yoffset += 42;
+      document.getElementById("ssoul").style.top = souly + "px";
+      arrVertical++;
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    else if ((event.key === 'ArrowUp' || event.key === 'w') && arrVertical > 0) { //menu nav
+      souly -= 42;
+      yoffset -= 42;
+      document.getElementById("ssoul").style.top = souly + "px";
+      arrVertical--;
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    else if ((event.key === 'ArrowLeft' || event.key === 'a') && arrHorizontal > 0) { // menu nav
+      soulx -= 292;
+      xoffset -= 292;
+      document.getElementById("ssoul").style.left = soulx + "px";
+      arrHorizontal--;
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    else if ((event.key === 'ArrowRight' || event.key === 'd') && arrHorizontal < 2) { // menu nav
+      soulx += 292;
+      xoffset += 292;
+      document.getElementById("ssoul").style.left = soulx + "px";
+      arrHorizontal++;
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+
+    if ((event.key === "x" || event.key === "k")) {
+      soulx += xoffset;
+      souly -= yoffset - offset;
+      document.getElementById("ssoul").style.left = soulx + "px";
+      document.getElementById("ssoul").style.top = souly + "px";
+      menuing = true;
+      menuingg = false;
+      xoffset = 0;
+      yoffset = 0;
+      arrHorizontal = 0;
+      arrVertical = 0;
+    }
+
+
+    if ((event.key === "z" || event.key === "j")) {
+      if (x == 1) {
+        if (xx == 1) {
+          kris.setWeapon(arrKrisWeapon[arrHorizontal][arrVertical]);
+        }
+        else if (xx == 2) {
+          kris.setArmor1(arrEquipment[arrHorizontal][arrVertical]);
+        }
+        else if (xx == 3) {
+          kris.setArmor2(arrEquipment[arrHorizontal][arrVertical]);
+        }
+        krisSetEquipmentNames();
+      }
+
+      if (x == 2) {
+        if (xx == 1) {
+          susie.setWeapon(arrSusieWeapon[arrHorizontal][arrVertical]);
+        }
+        else if (xx == 2) {
+          susie.setArmor1(arrEquipment[arrHorizontal][arrVertical]);
+        }
+        else if (xx == 3) {
+          susie.setArmor2(arrEquipment[arrHorizontal][arrVertical]);
+        }
+        susieSetEquipmentNames();
+      }
+
+      if (x == 3) {
+        if (xx == 1) {
+          ralsei.setWeapon(arrRalseiWeapon[arrHorizontal][arrVertical]);
+        }
+        else if (xx == 2) {
+          ralsei.setArmor1(arrEquipment[arrHorizontal][arrVertical]);
+        }
+        else if (xx == 3) {
+          ralsei.setArmor2(arrEquipment[arrHorizontal][arrVertical]);
+        }
+        ralseiSetEquipmentNames();
+      }
+      soulx += xoffset;
+      souly -= yoffset - offset;
+      document.getElementById("ssoul").style.left = soulx + "px";
+      document.getElementById("ssoul").style.top = souly + "px";
+      menuing = true;
+      menuingg = false;
+      xoffset = 0;
+      yoffset = 0;
+      arrHorizontal = 0;
+      arrVertical = 0;
+
+      audSelect.play();
+      audSelect.currentTime = 0;
+    }
+  }
 }
 
 
