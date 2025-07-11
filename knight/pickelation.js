@@ -96,7 +96,7 @@ const Saber10 = new equipment("Saber10", 6, 0, 0);
 const TwistedSwd = new equipment("TwistedSwd", 16, 0, 0); //odd
 
 const BraveAx = new equipment("BraveAx", 2, 0, 0);
-const AutoAxe = new equipment("AutoAxe", 0, 0, 0);
+const AutoAxe = new equipment("AutoAxe", 4, 0, 0);
 const Devilsknife = new equipment("Devilsknife", 5, 0, 4); // -10 tp rude buster
 const ToxicAxe = new equipment("ToxicAxe", 6, 0, 0); //odd
 
@@ -245,6 +245,133 @@ function ralseiSetEquipmentNames() {
   document.getElementById("armor2").innerHTML = ralsei.returnArmor2().returnName();
 }
 
+function updateKrisStats() {
+  document.getElementById("playerAtk").innerHTML = 
+  "ATK: " + (kris.returnWeapon().returnAtk() + kris.returnArmor1().returnAtk() + kris.returnArmor2().returnAtk());
+  document.getElementById("playerDef").innerHTML = 
+  "DEF: " + (kris.returnWeapon().returnDef() + kris.returnArmor1().returnDef() + kris.returnArmor2().returnDef());
+  document.getElementById("playerMag").innerHTML = 
+  "MAG: " + (kris.returnWeapon().returnMag() + kris.returnArmor1().returnMag() + kris.returnArmor2().returnMag());
+
+}
+
+function updateSusieStats() {
+  document.getElementById("playerAtk").innerHTML = 
+  "ATK: " + (susie.returnWeapon().returnAtk() + susie.returnArmor1().returnAtk() + susie.returnArmor2().returnAtk());
+  document.getElementById("playerDef").innerHTML = 
+  "DEF: " + (susie.returnWeapon().returnDef() + susie.returnArmor1().returnDef() + susie.returnArmor2().returnDef());
+  document.getElementById("playerMag").innerHTML = 
+  "MAG: " + (susie.returnWeapon().returnMag() + susie.returnArmor1().returnMag() + susie.returnArmor2().returnMag());
+}
+
+function updateRalseiStats() {
+  document.getElementById("playerAtk").innerHTML = 
+  "ATK: " + (ralsei.returnWeapon().returnAtk() + ralsei.returnArmor1().returnAtk() + ralsei.returnArmor2().returnAtk());
+  document.getElementById("playerDef").innerHTML = 
+  "DEF: " + (ralsei.returnWeapon().returnDef() + ralsei.returnArmor1().returnDef() + ralsei.returnArmor2().returnDef());
+  document.getElementById("playerMag").innerHTML = 
+  "MAG: " + (ralsei.returnWeapon().returnMag() + ralsei.returnArmor1().returnMag() + ralsei.returnArmor2().returnMag());
+
+}
+
+
+function updateItemStats() {
+  if (xx > 1) {
+    if ((arrEquipment[arrHorizontal][arrVertical].returnAtk() == 0)) {
+      document.getElementById("itemAtk").style.display = "none";
+    }
+    else {
+      document.getElementById("itemAtk").style.display = "block";
+      document.getElementById("itemAtk").innerHTML = "ATK: " + (arrEquipment[arrHorizontal][arrVertical].returnAtk());
+    }
+    if ((arrEquipment[arrHorizontal][arrVertical].returnDef() == 0)) {
+      document.getElementById("itemDef").style.display = "none";
+    }
+    else {
+      document.getElementById("itemDef").style.display = "block";
+      document.getElementById("itemDef").innerHTML = "DEF: " + (arrEquipment[arrHorizontal][arrVertical].returnDef());
+    }
+    if ((arrEquipment[arrHorizontal][arrVertical].returnMag() == 0)) {
+      document.getElementById("itemMag").style.display = "none";
+    }
+    else {
+      document.getElementById("itemMag").style.display = "block";
+      document.getElementById("itemMag").innerHTML = "MAG: " + (arrEquipment[arrHorizontal][arrVertical].returnMag());
+    }
+  }
+  else {
+    if (x == 1) {
+      if ((arrKrisWeapon[arrHorizontal][arrVertical].returnAtk() == 0)) {
+      document.getElementById("itemAtk").style.display = "none";
+      }
+      else {
+        document.getElementById("itemAtk").style.display = "block";
+        document.getElementById("itemAtk").innerHTML = "ATK: " + (arrKrisWeapon[arrHorizontal][arrVertical].returnAtk());
+      }
+      if ((arrKrisWeapon[arrHorizontal][arrVertical].returnDef() == 0)) {
+        document.getElementById("itemDef").style.display = "none";
+      }
+      else {
+        document.getElementById("itemDef").style.display = "block";
+        document.getElementById("itemDef").innerHTML = "DEF: " + (arrKrisWeapon[arrHorizontal][arrVertical].returnDef());
+      }
+      if ((arrKrisWeapon[arrHorizontal][arrVertical].returnMag() == 0)) {
+        document.getElementById("itemMag").style.display = "none";
+      }
+      else {
+        document.getElementById("itemMag").style.display = "block";
+        document.getElementById("itemMag").innerHTML = "MAG: " + (arrKrisWeapon[arrHorizontal][arrVertical].returnMag());
+      }
+    }
+    else if (x == 2) {
+      if ((arrSusieWeapon[arrHorizontal][arrVertical].returnAtk() == 0)) {
+      document.getElementById("itemAtk").style.display = "none";
+      }
+      else {
+        document.getElementById("itemAtk").style.display = "block";
+        document.getElementById("itemAtk").innerHTML = "ATK: " + (arrSusieWeapon[arrHorizontal][arrVertical].returnAtk());
+      }
+      if ((arrSusieWeapon[arrHorizontal][arrVertical].returnDef() == 0)) {
+        document.getElementById("itemDef").style.display = "none";
+      }
+      else {
+        document.getElementById("itemDef").style.display = "block";
+        document.getElementById("itemDef").innerHTML = "DEF: " + (arrSusieWeapon[arrHorizontal][arrVertical].returnDef());
+      }
+      if ((arrSusieWeapon[arrHorizontal][arrVertical].returnMag() == 0)) {
+        document.getElementById("itemMag").style.display = "none";
+      }
+      else {
+        document.getElementById("itemMag").style.display = "block";
+        document.getElementById("itemMag").innerHTML = "MAG: " + (arrSusieWeapon[arrHorizontal][arrVertical].returnMag());
+      }
+    }
+    else if (x == 3) {
+      if ((arrRalseiWeapon[arrHorizontal][arrVertical].returnAtk() == 0)) {
+      document.getElementById("itemAtk").style.display = "none";
+      }
+      else {
+        document.getElementById("itemAtk").style.display = "block";
+        document.getElementById("itemAtk").innerHTML = "ATK: " + (arrRalseiWeapon[arrHorizontal][arrVertical].returnAtk());
+      }
+      if ((arrRalseiWeapon[arrHorizontal][arrVertical].returnDef() == 0)) {
+        document.getElementById("itemDef").style.display = "none";
+      }
+      else {
+        document.getElementById("itemDef").style.display = "block";
+        document.getElementById("itemDef").innerHTML = "DEF: " + (arrRalseiWeapon[arrHorizontal][arrVertical].returnDef());
+      }
+      if ((arrRalseiWeapon[arrHorizontal][arrVertical].returnMag() == 0)) {
+        document.getElementById("itemMag").style.display = "none";
+      }
+      else {
+        document.getElementById("itemMag").style.display = "block";
+        document.getElementById("itemMag").innerHTML = "MAG: " + (arrRalseiWeapon[arrHorizontal][arrVertical].returnMag());
+      }
+    }
+  }
+}
+
 function mainMenu() {
   if (mainmenu == true) {
   if (((event.key === 'ArrowDown' || event.key === 's') && z == 1) || ((event.key === 'ArrowUp' || event.key === 'w') && z == 1)) {
@@ -357,10 +484,12 @@ function loadoutMenu() {
       if (x == 2) {
         susieSetEquipmentNames();
         document.getElementById("playerHud").src="assets/susieHud.png";
+        updateSusieStats();
       }
       else if (x == 3) {
         ralseiSetEquipmentNames();
         document.getElementById("playerHud").src="assets/ralseiHud.png";
+        updateRalseiStats();
       }
     }
     if ((event.key === 'ArrowLeft' || event.key === 'a') && x > 1 && menuing == false && menuingg == false) { // same ^
@@ -372,10 +501,12 @@ function loadoutMenu() {
       if (x == 1) {
         krisSetEquipmentNames();
         document.getElementById("playerHud").src="assets/krisHud.png";
+        updateKrisStats();
       }
       else if (x == 2) {
         susieSetEquipmentNames();
         document.getElementById("playerHud").src="assets/susieHud.png";
+        updateSusieStats();
       }
     }
     if ((event.key === "z" || event.key === "j") && menuing == false && menuingg == false && x == 1) { //krs select
@@ -537,7 +668,7 @@ function equipmentMenuingMenu() {
       yoffset += 42;
       document.getElementById("ssoul").style.top = souly + "px";
       arrVertical++;
-
+      updateItemStats();
       audMove.play();
       audMove.currentTime = 0;
     }
@@ -546,7 +677,7 @@ function equipmentMenuingMenu() {
       yoffset -= 42;
       document.getElementById("ssoul").style.top = souly + "px";
       arrVertical--;
-
+      updateItemStats();
       audMove.play();
       audMove.currentTime = 0;
     }
@@ -555,7 +686,7 @@ function equipmentMenuingMenu() {
       xoffset -= 292;
       document.getElementById("ssoul").style.left = soulx + "px";
       arrHorizontal--;
-
+      updateItemStats();
       audMove.play();
       audMove.currentTime = 0;
     }
@@ -564,7 +695,7 @@ function equipmentMenuingMenu() {
       xoffset += 292;
       document.getElementById("ssoul").style.left = soulx + "px";
       arrHorizontal++;
-
+      updateItemStats();
       audMove.play();
       audMove.currentTime = 0;
     }
