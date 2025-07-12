@@ -21,7 +21,7 @@ body {
 
 #select {
   text-align: left;
-  width: 100px;
+  width: 250px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -30,7 +30,7 @@ body {
   position: absolute;
   width: 24px;
   top: 5px;
-  right: 103px;
+  right: 253px;
   image-rendering: pixelated;
   z-index: 1;
 }

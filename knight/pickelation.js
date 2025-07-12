@@ -1,4 +1,5 @@
 let z = 1; //main menu z
+let mainsouly = 5; //main Souly 
 let x = 1; //loadout menu x (top)
 let xx = 1; //loadout equipmenut menu x (weap armor1 armor2)
 let offset = 0; //equipmenu offset
@@ -378,15 +379,17 @@ function resetItemStats() {
 
 function mainMenu() {
   if (mainmenu == true) {
-  if (((event.key === 'ArrowDown' || event.key === 's') && z == 1) || ((event.key === 'ArrowUp' || event.key === 'w') && z == 1)) {
-    document.getElementById("soul").style.top = "50px";
-    z = 2;
+  if (((event.key === 'ArrowDown' || event.key === 's') && z < 4)) {
+    mainsouly += 45;
+    document.getElementById("soul").style.top = mainsouly + "px";
+    z++;
     audMove.play();
     audMove.currentTime = 0;
   }
-  else if (((event.key === 'ArrowUp' || event.key === 'w') && z == 2) || ((event.key === 'ArrowDown' || event.key === 's') && z == 2)) {
-    document.getElementById("soul").style.top = "5px";
-    z = 1;
+  else if (((event.key === 'ArrowUp' || event.key === 'w') && z > 1)) {
+    mainsouly -= 45;
+    document.getElementById("soul").style.top = mainsouly + "px";
+    z--;
     audMove.play();
     audMove.currentTime = 0;
   }
@@ -407,7 +410,7 @@ function mainMenu() {
     soulx = 92; //px
     krisSetEquipmentNames();
   }
-  if ((event.key === "z" || event.key === "j") && z == 1) {
+  else if ((event.key === "z" || event.key === "j") && z == 1) {
     alert("WHAT");
     audSelect.play();
     audSelect.currentTime = 0;
