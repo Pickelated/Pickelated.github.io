@@ -456,7 +456,6 @@ function mainMenu() {
   }
 }
 
-
 function loadoutMenu() {
   if (loadoutmenu == true) {
     if ((event.key === 'x' || event.key === 'k') && menuing == false && menuingg == false) { // exit loadout
