@@ -93,19 +93,19 @@ const BounceBlade = new equipment("BounceBlade", 2, 1, 0);
 const Trefoil = new equipment("Trefoil", 4, 0, 0);
 const MechaSaber = new equipment("MechaSaber", 4, 0, 0);
 const Saber10 = new equipment("Saber10", 6, 0, 0);
-const TwistedSwd = new equipment("TwistedSwd", 16, 0, 0); //odd
+const TwistedSwd = new equipment("TwistedSwd", 16, 0, 0); 
 
 const BraveAx = new equipment("BraveAx", 2, 0, 0);
 const AutoAxe = new equipment("AutoAxe", 4, 0, 0);
 const Devilsknife = new equipment("Devilsknife", 5, 0, 4); // -10 tp rude buster
-const ToxicAxe = new equipment("ToxicAxe", 6, 0, 0); //odd
+const ToxicAxe = new equipment("ToxicAxe", 6, 0, 0); 
 
 const Ragger = new equipment("Ragger", 2, 0, 0);
 const DaintyScarf = new equipment("DaintyScarf", 0, 0, 2);
 const FiberScarf = new equipment("FiberScarf", 2, 0, 2);
 const FlexScarf = new equipment("FlexScarf", 4, 0, 1);
 const Ragger2 = new equipment("Ragger2", 5, 0, -1);
-const PuppetScarf = new equipment("PuppetScarf", 10, 0, -6); //odd
+const PuppetScarf = new equipment("PuppetScarf", 10, 0, -6); 
 
 const Mannequin = new equipment("Mannequin", 0, 0, 0); // ???
 const AmberCard = new equipment("AmberCard", 0, 1, 0);
@@ -119,7 +119,7 @@ const PinkRibbon = new equipment("PinkRibbon", 0, 1, 0); // +44% graze area, -20
 const TwinRibbon = new equipment("TwinRibbon", 0, 3, 0); // +56.25% graze area, -25% graze tp
 const BlueRibbon = new equipment("BlueRibbon", 0, 1, 1);
 const IronShackle = new equipment("IronShackle", 1, 2, 0);
-const MouseToken = new equipment("MouseToken", 0, 1, 2);
+const MouseToken = new equipment("MouseToken", 0, 1, 2); //unused but IDCCCCCCCC makes menu Look Nice
 const FrayedBowtie = new equipment("FrayedBowtie", 1, 1, 1); // ???
 const BShotBowtie = new equipment("B.ShotBowtie", 0, 2, 1);
 const LodeStone = new equipment("LodeStone", 0, 2, 0); // +5% tp
@@ -226,7 +226,6 @@ function resetEquipment() {
   }
 }
 
-
 function krisSetEquipmentNames() {
   document.getElementById("weapon").innerHTML = kris.returnWeapon().returnName();
   document.getElementById("armor1").innerHTML = kris.returnArmor1().returnName();
@@ -273,7 +272,6 @@ function updateRalseiStats() {
   "MAG: " + (ralsei.returnWeapon().returnMag() + ralsei.returnArmor1().returnMag() + ralsei.returnArmor2().returnMag());
 
 }
-
 
 function updateItemStats() {
   if (xx > 1) {
@@ -370,6 +368,12 @@ function updateItemStats() {
       }
     }
   }
+}
+
+function resetItemStats() {
+  document.getElementById("itemAtk").style.display = "none";
+  document.getElementById("itemDef").style.display = "none";
+  document.getElementById("itemMag").style.display = "none";
 }
 
 function mainMenu() {
@@ -561,18 +565,21 @@ function loadoutMenu() {
         kris.setArmor1(placeholder);
         kris.setArmor2(placeholder);
         krisSetEquipmentNames();
+        updateKrisStats();
       }
       else if (x == 2) {
         susie.setWeapon(ManeAx);
         susie.setArmor1(placeholder);
         susie.setArmor2(placeholder);
         susieSetEquipmentNames();
+        updateSusieStats();
       }
       else if (x == 3) {
         ralsei.setWeapon(RedScarf);
         ralsei.setArmor1(placeholder);
         ralsei.setArmor2(placeholder);
         ralseiSetEquipmentNames();
+        updateRalseiStats();
       }
       audSelect.play();
       audSelect.currentTime = 0;
@@ -711,6 +718,7 @@ function equipmentMenuingMenu() {
       yoffset = 0;
       arrHorizontal = 0;
       arrVertical = 0;
+      resetItemStats();
 
       document.getElementById("weapon").style.color = "white";
       document.getElementById("armor1").style.color = "white";
@@ -730,6 +738,7 @@ function equipmentMenuingMenu() {
           kris.setArmor2(arrEquipment[arrHorizontal][arrVertical]);
         }
         krisSetEquipmentNames();
+        updateKrisStats();
       }
       else if (x == 2) {
         if (xx == 1) {
@@ -742,6 +751,7 @@ function equipmentMenuingMenu() {
           susie.setArmor2(arrEquipment[arrHorizontal][arrVertical]);
         }
         susieSetEquipmentNames();
+        updateSusieStats();
       }
       else if (x == 3) {
         if (xx == 1) {
@@ -754,6 +764,7 @@ function equipmentMenuingMenu() {
           ralsei.setArmor2(arrEquipment[arrHorizontal][arrVertical]);
         }
         ralseiSetEquipmentNames();
+        updateRalseiStats();
       }
       soulx -= xoffset;
       souly -= yoffset - offset;
@@ -769,6 +780,7 @@ function equipmentMenuingMenu() {
       document.getElementById("weapon").style.color = "white";
       document.getElementById("armor1").style.color = "white";
       document.getElementById("armor2").style.color = "white";
+      resetItemStats();
 
       audSelect.play();
       audSelect.currentTime = 0;
