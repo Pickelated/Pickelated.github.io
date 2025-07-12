@@ -13,6 +13,8 @@ let menuinggg = false; //equip equip
 let arrHorizontal = 0; // [0][]
 let arrVertical = 0; // [][0]
 let check = 0; //HATE
+let sfxcheck = true; //sfx check WHATT
+let musiccheck = true; //guess
 let mainmenu = true;
 let loadoutmenu = false;
 
@@ -379,46 +381,81 @@ function resetItemStats() {
 
 function mainMenu() {
   if (mainmenu == true) {
-  if (((event.key === 'ArrowDown' || event.key === 's') && z < 4)) {
-    mainsouly += 45;
-    document.getElementById("soul").style.top = mainsouly + "px";
-    z++;
-    audMove.play();
-    audMove.currentTime = 0;
-  }
-  else if (((event.key === 'ArrowUp' || event.key === 'w') && z > 1)) {
-    mainsouly -= 45;
-    document.getElementById("soul").style.top = mainsouly + "px";
-    z--;
-    audMove.play();
-    audMove.currentTime = 0;
-  }
+    if (((event.key === 'ArrowDown' || event.key === 's') && z < 4)) { // menu nav
+      mainsouly += 45;
+      document.getElementById("soul").style.top = mainsouly + "px";
+      z++;
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    else if (((event.key === 'ArrowUp' || event.key === 'w') && z > 1)) {
+      mainsouly -= 45;
+      document.getElementById("soul").style.top = mainsouly + "px";
+      z--;
+      audMove.play();
+      audMove.currentTime = 0;
+    }
 
-  if ((event.key === "z" || event.key === "j") && z == 2) {
-    document.getElementById("title").style.display = "none";
-    document.getElementById("loadout").style.display = "block";
-    document.getElementById("soul").style.display = "inline";
-    document.getElementById("krisThumb").style.filter = "grayscale(0)";
-    document.getElementById("susieThumb").style.filter = "grayscale(0)";
-    document.getElementById("ralseiThumb").style.filter = "grayscale(0)";
-    mainmenu = false;
-    loadoutmenu = true;
-    x = 1;
-    audSelect.play();
-    audSelect.currentTime = 0;
-    souly = 53; //px
-    soulx = 92; //px
-    krisSetEquipmentNames();
-  }
-  else if ((event.key === "z" || event.key === "j") && z == 1) {
-    alert("WHAT");
-    audSelect.play();
-    audSelect.currentTime = 0;
-    bossMusic.play();
-    bossMusic.currentTime = 0;
+    if (event.key === "z" || event.key === "j") {
+      if (z == 2) {
+        document.getElementById("title").style.display = "none";
+        document.getElementById("loadout").style.display = "block";
+        document.getElementById("soul").style.display = "inline";
+        document.getElementById("krisThumb").style.filter = "grayscale(0)";
+        document.getElementById("susieThumb").style.filter = "grayscale(0)";
+        document.getElementById("ralseiThumb").style.filter = "grayscale(0)";
+        mainmenu = false;
+        loadoutmenu = true;
+        x = 1;
+        audSelect.play();
+        audSelect.currentTime = 0;
+        souly = 53; //px
+        soulx = 92; //px
+        krisSetEquipmentNames();
+      }
+      else if (z == 1) {
+        alert("WHAT");
+        audSelect.play();
+        audSelect.currentTime = 0;
+        bossMusic.play();
+        bossMusic.currentTime = 0;
+      }
+      else if (z == 3) {
+        if (sfxcheck) {
+          audMove.src = "";
+          audSelect.src = "";
+          sfxcheck = false;
+          document.getElementById("sfx").innerHTML = "sfx: off";
+        }
+        else {
+          audMove.src = "assets/menumove.wav";
+          audSelect.src = "assets/menuselect.wav";
+          audSelect.play();
+          audSelect.currentTime = 0;
+          sfxcheck = true;
+          document.getElementById("sfx").innerHTML = "sfx: on";
+        }
+      }
+      else if (z == 4) {
+        if (musiccheck) {
+          bossMusic.src = "";
+          audSelect.play();
+          audSelect.currentTime = 0;
+          musiccheck = false;
+          document.getElementById("music").innerHTML = "music: off";
+        }
+        else {
+          bossMusic.src = "assets/knife.mp3";
+          audSelect.play();
+          audSelect.currentTime = 0;
+          musiccheck = true;
+          document.getElementById("music").innerHTML = "music: on";
+        }
+      }
+    }
   }
 }
-}
+
 
 function loadoutMenu() {
   if (loadoutmenu == true) {
