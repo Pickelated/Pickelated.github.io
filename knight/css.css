@@ -76,6 +76,14 @@ p {
   top: 0px;
 }
 
+#quitinventory {
+  position: absolute;
+  text-align: left;
+  font-family: small;
+  font-size: 24px;
+  top: 0px;
+}
+
 #topload {
   display: flex;
   justify-content: center;
@@ -199,6 +207,18 @@ p {
 
 #inventory {
   display: none;
+}
+
+#consumablesAlign {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+#invAlign {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
 }
 
 /* canvas {
