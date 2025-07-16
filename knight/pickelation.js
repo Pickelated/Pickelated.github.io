@@ -17,6 +17,7 @@ let sfxcheck = true; //sfx check WHATT
 let musiccheck = true; //guess
 let mainmenu = true;
 let loadoutmenu = false;
+let inventorymenu = false;
 
 const audMove = new Audio("assets/menumove.wav");
 const audSelect = new Audio("assets/menuselect.wav");
@@ -381,7 +382,7 @@ function resetItemStats() {
 
 function mainMenu() {
   if (mainmenu == true) {
-    if (((event.key === 'ArrowDown' || event.key === 's') && z < 4)) { // menu nav
+    if (((event.key === 'ArrowDown' || event.key === 's') && z < 5)) { // menu nav
       mainsouly += 45;
       document.getElementById("soul").style.top = mainsouly + "px";
       z++;
@@ -397,10 +398,10 @@ function mainMenu() {
     }
 
     if (event.key === "z" || event.key === "j") {
-      if (z == 2) {
+      if (z == 2) { //loadout
         document.getElementById("title").style.display = "none";
         document.getElementById("loadout").style.display = "block";
-        document.getElementById("soul").style.display = "inline";
+
         document.getElementById("krisThumb").style.filter = "grayscale(0)";
         document.getElementById("susieThumb").style.filter = "grayscale(0)";
         document.getElementById("ralseiThumb").style.filter = "grayscale(0)";
@@ -413,14 +414,14 @@ function mainMenu() {
         soulx = 92; //px
         krisSetEquipmentNames();
       }
-      else if (z == 1) {
+      else if (z == 1) { //play buton. it get real
         alert("WHAT");
         audSelect.play();
         audSelect.currentTime = 0;
         bossMusic.play();
         bossMusic.currentTime = 0;
       }
-      else if (z == 3) {
+      else if (z == 4) { //sfx
         if (sfxcheck) {
           audMove.src = "";
           audSelect.src = "";
@@ -436,7 +437,7 @@ function mainMenu() {
           document.getElementById("sfx").innerHTML = "sfx: on";
         }
       }
-      else if (z == 4) {
+      else if (z == 5) { //music
         if (musiccheck) {
           bossMusic.src = "";
           audSelect.play();
@@ -451,6 +452,16 @@ function mainMenu() {
           musiccheck = true;
           document.getElementById("music").innerHTML = "music: on";
         }
+      }
+      else if (z == 3) { // inventory
+        document.getElementById("title").style.display = "none";
+        document.getElementById("inventory").style.display = "block";
+
+        mainmenu = false;
+        inventorymenu = true;
+
+        audSelect.play();
+        audSelect.currentTime = 0;
       }
     }
   }

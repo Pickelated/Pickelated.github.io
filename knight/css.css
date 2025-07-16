@@ -197,6 +197,10 @@ p {
   display: none;
 }
 
+#inventory {
+  display: none;
+}
+
 /* canvas {
   
 } */
