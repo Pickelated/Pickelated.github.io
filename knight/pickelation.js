@@ -529,6 +529,8 @@ function mainMenu() {
         mainmenu = false;
         inventorymenu = true;
 
+        document.getElementById("consumableStat").innerHTML = arrConsumables[arrHorizontal][arrVertical].returnDesc();
+        
         audSelect.play();
         audSelect.currentTime = 0;
       }
