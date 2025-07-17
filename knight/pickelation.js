@@ -12,6 +12,7 @@ let menuingg = false; //equip
 let menuinggg = false; //equip equip
 let arrHorizontal = 0; // [0][]
 let arrVertical = 0; // [][0]
+let arrStat = 0; // ARR STAT INVETORY
 let check = 0; //HATE
 let sfxcheck = true; //sfx check WHATT
 let musiccheck = true; //guess
@@ -83,6 +84,27 @@ class equipment {
   }
 }
 
+class consumable {
+
+  constructor(name, desc, stat) {
+    this.name = name;
+    this.desc = desc;
+    this.stat = stat;
+  }
+
+  returnName() {
+    return this.name;
+  }
+
+  returnDesc() {
+    return this.desc;
+  }
+
+  returnStat() {
+    return this.stat;
+  }
+}
+
 const placeholder = new equipment("...", 0, 0, 0);
 const WoodBlade = new equipment("WoodBlade", 1, 0, 0);
 const ManeAx = new equipment("ManeAx", 0, 0, 0);
@@ -91,6 +113,8 @@ const RedScarf = new equipment("RedScarf", 0, 0, 0);
 const kris = new charEquip(WoodBlade, placeholder, placeholder);
 const susie = new charEquip(ManeAx, placeholder, placeholder);
 const ralsei = new charEquip(RedScarf, placeholder, placeholder);
+
+let inventory = [];
 
 const Spookysword = new equipment("Spookysword", 2, 0 ,0);
 const BounceBlade = new equipment("BounceBlade", 2, 1, 0);
@@ -136,10 +160,31 @@ const TennaTie = new equipment("TennaTie", 0, 5, -2);
 const Dealmaker = new equipment("Dealmaker", 0, 5, 5); // +$$$
 const ShadowMantle = new equipment("ShadowMantle", 0, 3, 0); // -66% dark/star dmg
 
-let arrKrisWeapon = [[]];
-let arrSusieWeapon = [[]];
-let arrRalseiWeapon = [[]];
-let arrEquipment = [[],[],[]];
+const LightCandy = new consumable("LightCandy", "HP: +120", 120);
+const DarkCandy = new consumable("DarkCandy", "HP: +40", 40);
+const Darkburger = new consumable("Darkburger", "HP: +70", 70);
+const CDBagel = new consumable("CDBagel", "HP: +80", 80);
+const ButlerJuice = new consumable("ButlerJuice", "HP: +100", 100);
+const FlatSoda = new consumable("FlatSoda", "HP: +20", 20);
+const TVSlop = new consumable("TVSlop", "HP: +80", 80);
+const TVDinner = new consumable("TVDinner", "HP: +100", 100);
+const DeluxeDinner = new consumable("DeluxeDinner", "HP: +140", 140);
+const SpaghettiCode = new consumable("SpaghettiCode", "HP: +30 to all", 30);
+const ClubsSandwich = new consumable("ClubsSandwich", "HP: +70 to all", 70);
+const ExecBuffet = new consumable("ExecBuffet", "HP: +100 to all", 100);
+const TopCake = new consumable("TopCake", "HP: +160 to all", 160);
+const TensionBit = new consumable("TensionBit", "TP: +32%", 32);
+const TensionGem = new consumable("TensionGem", "TP: +50%", 50);
+const TensionMax = new consumable("TensionMax", "TP: +100%", 100);
+const ReviveDust = new consumable("ReviveDust", "Heals all downed to 25%", 10); //+10 hp alive
+const ReviveMint = new consumable("ReviveMint", "Heals downed to max", 0.5); // 50% of max hp alive
+
+const arrKrisWeapon = [[]];
+const arrSusieWeapon = [[]];
+const arrRalseiWeapon = [[]];
+const arrEquipment = [[],[],[]];
+
+const arrConsumables = [[],[],[]];
 
 arrKrisWeapon[0][0] = WoodBlade;
 arrKrisWeapon[0][1] = Spookysword;
@@ -189,6 +234,27 @@ arrEquipment[2][4] = TensionBow;
 arrEquipment[2][5] = TennaTie;
 arrEquipment[2][6] = Dealmaker;
 arrEquipment[2][7] = ShadowMantle;
+
+arrConsumables[0][0] = LightCandy;
+arrConsumables[0][1] = DarkCandy;
+arrConsumables[0][2] = Darkburger;
+arrConsumables[0][3] = CDBagel;
+arrConsumables[0][4] = ButlerJuice;
+arrConsumables[0][5] = FlatSoda;
+
+arrConsumables[1][0] = TVSlop;
+arrConsumables[1][1] = TVDinner;
+arrConsumables[1][2] = DeluxeDinner;
+arrConsumables[1][3] = SpaghettiCode;
+arrConsumables[1][4] = ClubsSandwich;
+arrConsumables[1][5] = ExecBuffet;
+
+arrConsumables[2][0] = TopCake;
+arrConsumables[2][1] = TensionBit;
+arrConsumables[2][2] = TensionGem;
+arrConsumables[2][3] = TensionMax;
+arrConsumables[2][4] = ReviveDust;
+arrConsumables[2][5] = ReviveMint;
 
 function showKrisWeapons() {
   resetEquipment();
@@ -457,12 +523,97 @@ function mainMenu() {
         document.getElementById("title").style.display = "none";
         document.getElementById("inventory").style.display = "block";
 
+        soulx = 147;
+        souly = 11;
+
         mainmenu = false;
         inventorymenu = true;
 
         audSelect.play();
         audSelect.currentTime = 0;
       }
+    }
+  }
+}
+
+function inventoryMenu() {
+  if (inventorymenu == true) {
+    if ((event.key == "ArrowUp" || event.key == "w") && arrVertical > 0) {
+      souly -= 45;
+      document.getElementById("sssoul").style.top = souly + "px";
+
+      arrVertical--;
+
+      document.getElementById("consumableStat").innerHTML = arrConsumables[arrHorizontal][arrVertical].returnDesc();
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    if ((event.key == "ArrowDown" || event.key == "s") && arrVertical < 5) {
+      souly += 45;
+      document.getElementById("sssoul").style.top = souly + "px";
+
+      arrVertical++;
+
+      document.getElementById("consumableStat").innerHTML = arrConsumables[arrHorizontal][arrVertical].returnDesc();
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    if ((event.key == "ArrowLeft" || event.key == "a") && arrHorizontal > 0) {
+      soulx -= 337;
+      document.getElementById("sssoul").style.left = soulx + "px";
+
+      arrHorizontal--;
+
+      document.getElementById("consumableStat").innerHTML = arrConsumables[arrHorizontal][arrVertical].returnDesc();
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    if ((event.key == "ArrowRight" || event.key == "d") && arrHorizontal < 2) {
+      soulx += 337;
+      document.getElementById("sssoul").style.left = soulx + "px";
+
+      arrHorizontal++;
+
+      document.getElementById("consumableStat").innerHTML = arrConsumables[arrHorizontal][arrVertical].returnDesc();
+
+      audMove.play();
+      audMove.currentTime = 0;
+    }
+    if (event.key == "z" || event.key == "j") {
+      if (arrStat < 12) {
+        inventory[arrStat] = arrConsumables[arrHorizontal][arrVertical];
+
+        document.getElementById("inv" + arrStat).innerHTML = inventory[arrStat].returnName();
+        arrStat++;
+
+        audSelect.play();
+        audSelect.currentTime = 0;
+      }
+    }
+    if (event.key == "x" || event.key == "k") {
+      arrHorizontal = 0;
+      arrVertical = 0;
+
+      mainmenu = true;
+      inventorymenu = false;
+      document.getElementById("title").style.display = "block";
+      document.getElementById("inventory").style.display = "none";
+
+      document.getElementById("sssoul").style.top = 11 + "px";
+      document.getElementById("sssoul").style.left = 147 + "px";
+    }
+    if (event.key == "c" || event.key == "l") {
+      for (let i = 0; i < inventory.length; i++) {
+        document.getElementById("inv" + i).innerHTML = "..."
+      }
+      inventory = [];
+      arrStat = 0;
+
+      audSelect.play();
+      audSelect.currentTime = 0;
     }
   }
 }
@@ -843,6 +994,7 @@ document.addEventListener('keydown', (event) => {
   console.log(`Key pressed: ${event.key}`);
   console.log(`Key code: ${event.code}`);
 
+  inventoryMenu();
   loadoutMenu();
   mainMenu();
 

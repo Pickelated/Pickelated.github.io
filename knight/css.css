@@ -44,6 +44,14 @@ body {
   z-index: 2;
 }
 
+#sssoul {
+  position: absolute;
+  width: 24px;
+  image-rendering: pixelated;
+  top: 11px;
+  left: 147px;
+}
+
 #alignment {
   position: relative;
   display: static;
@@ -210,15 +218,36 @@ p {
 }
 
 #consumablesAlign {
+  position: relative;
   display: flex;
   justify-content: center;
   margin-top: 24px;
+  text-align: left;
 }
 
 #invAlign {
   margin-top: 80px;
   display: flex;
   justify-content: center;
+  text-align: left;
+}
+
+#consumablesStat {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  top: 290px;
+  right: 130px;
+  width: 210px;
+}
+
+.invfontfix {
+  margin-bottom: 10px;
+  font-size: 30px;
 }
 
 /* canvas {
