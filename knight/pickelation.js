@@ -16,7 +16,9 @@ let arrStat = 0; // ARR STAT INVETORY
 let check = 0; //HATE
 let sfxcheck = true; //sfx check WHATT
 let musiccheck = true; //guess
+let shiftexit = false;
 let mainmenu = true;
+let playmenu = false;
 let loadoutmenu = false;
 let inventorymenu = false;
 
@@ -316,9 +318,9 @@ function ralseiSetEquipmentNames() {
 
 function updateKrisStats() {
   document.getElementById("playerAtk").innerHTML = 
-  "ATK: " + (kris.returnWeapon().returnAtk() + kris.returnArmor1().returnAtk() + kris.returnArmor2().returnAtk());
+  "ATK: " + (kris.returnWeapon().returnAtk() + kris.returnArmor1().returnAtk() + kris.returnArmor2().returnAtk() + 14);
   document.getElementById("playerDef").innerHTML = 
-  "DEF: " + (kris.returnWeapon().returnDef() + kris.returnArmor1().returnDef() + kris.returnArmor2().returnDef());
+  "DEF: " + (kris.returnWeapon().returnDef() + kris.returnArmor1().returnDef() + kris.returnArmor2().returnDef() + 2);
   document.getElementById("playerMag").innerHTML = 
   "MAG: " + (kris.returnWeapon().returnMag() + kris.returnArmor1().returnMag() + kris.returnArmor2().returnMag());
 
@@ -326,20 +328,20 @@ function updateKrisStats() {
 
 function updateSusieStats() {
   document.getElementById("playerAtk").innerHTML = 
-  "ATK: " + (susie.returnWeapon().returnAtk() + susie.returnArmor1().returnAtk() + susie.returnArmor2().returnAtk());
+  "ATK: " + (susie.returnWeapon().returnAtk() + susie.returnArmor1().returnAtk() + susie.returnArmor2().returnAtk() + 18);
   document.getElementById("playerDef").innerHTML = 
-  "DEF: " + (susie.returnWeapon().returnDef() + susie.returnArmor1().returnDef() + susie.returnArmor2().returnDef());
+  "DEF: " + (susie.returnWeapon().returnDef() + susie.returnArmor1().returnDef() + susie.returnArmor2().returnDef() + 2);
   document.getElementById("playerMag").innerHTML = 
-  "MAG: " + (susie.returnWeapon().returnMag() + susie.returnArmor1().returnMag() + susie.returnArmor2().returnMag());
+  "MAG: " + (susie.returnWeapon().returnMag() + susie.returnArmor1().returnMag() + susie.returnArmor2().returnMag() + 2);
 }
 
 function updateRalseiStats() {
   document.getElementById("playerAtk").innerHTML = 
-  "ATK: " + (ralsei.returnWeapon().returnAtk() + ralsei.returnArmor1().returnAtk() + ralsei.returnArmor2().returnAtk());
+  "ATK: " + (ralsei.returnWeapon().returnAtk() + ralsei.returnArmor1().returnAtk() + ralsei.returnArmor2().returnAtk() + 12);
   document.getElementById("playerDef").innerHTML = 
-  "DEF: " + (ralsei.returnWeapon().returnDef() + ralsei.returnArmor1().returnDef() + ralsei.returnArmor2().returnDef());
+  "DEF: " + (ralsei.returnWeapon().returnDef() + ralsei.returnArmor1().returnDef() + ralsei.returnArmor2().returnDef() + 2);
   document.getElementById("playerMag").innerHTML = 
-  "MAG: " + (ralsei.returnWeapon().returnMag() + ralsei.returnArmor1().returnMag() + ralsei.returnArmor2().returnMag());
+  "MAG: " + (ralsei.returnWeapon().returnMag() + ralsei.returnArmor1().returnMag() + ralsei.returnArmor2().returnMag() + 11);
 
 }
 
@@ -481,11 +483,17 @@ function mainMenu() {
         krisSetEquipmentNames();
       }
       else if (z == 1) { //play buton. it get real
-        alert("WHAT");
-        audSelect.play();
-        audSelect.currentTime = 0;
-        bossMusic.play();
-        bossMusic.currentTime = 0;
+        // alert("WHAT");
+        mainmenu = false;
+        playmenu = true;
+
+        document.getElementById("title").style.display = "none";
+        document.getElementById("play").style.display = "block";
+
+        // audSelect.play();
+        // audSelect.currentTime = 0;
+        // bossMusic.play();
+        // bossMusic.currentTime = 0;
       }
       else if (z == 4) { //sfx
         if (sfxcheck) {
@@ -534,6 +542,24 @@ function mainMenu() {
         audSelect.play();
         audSelect.currentTime = 0;
       }
+    }
+  }
+}
+
+function playMenu() {
+  if (playmenu == true) {
+    console.log("hi");
+    if (shiftexit == true && event.key == "Q") { //quit
+
+      document.getElementById("play").style.display = "none";
+      document.getElementById("title").style.display = "block";
+
+      mainmenu = true;
+      playmenu = false;
+
+      audSelect.play();
+      audSelect.currentTime = 0;
+
     }
   }
 }
@@ -606,6 +632,9 @@ function inventoryMenu() {
 
       document.getElementById("sssoul").style.top = 11 + "px";
       document.getElementById("sssoul").style.left = 147 + "px";
+
+      audSelect.play();
+      audSelect.currentTime = 0;
     }
     if (event.key == "c" || event.key == "l") {
       for (let i = 0; i < inventory.length; i++) {
@@ -996,8 +1025,21 @@ document.addEventListener('keydown', (event) => {
   console.log(`Key pressed: ${event.key}`);
   console.log(`Key code: ${event.code}`);
 
+  if (event.key == "Shift") {
+    shiftexit = true;
+  }
+
+
+  playMenu();
   inventoryMenu();
   loadoutMenu();
   mainMenu();
 
+});
+
+document.addEventListener("keyup", (eventup) => {
+  if (eventup.key == "Shift") {
+    shiftexit = false;
+  }
+  console.log("Key up: " + eventup.key);
 });
