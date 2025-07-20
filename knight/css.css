@@ -13,10 +13,16 @@
   src: url("assets/title.ttf");
 }
 
+html {
+  height: 100vh;
+  overflow: hidden;
+}
+
 body {
   background: black;
   text-align: center;
   margin: 0px;
+  height: 100vh;
   /* cursor: none; */
 }
 
@@ -256,11 +262,13 @@ p {
 #play {
   margin: 0px;
   display: none;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 #bgDf {
   margin-top: 0px;
-  width: 575px;
+  width: 525px;
   image-rendering: pixelated;
 }
 
@@ -272,15 +280,78 @@ p {
   display: flex;
   justify-content: center;
   align-items: end;
-  height: 100px;
-  width: 100px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
+  border-top: solid 4px #191019;
+  border-bottom: solid 4px #191019;
 }
 
 .battlethumbs {
-  width: 310px;
+  width: 320px;
   image-rendering: pixelated;
+}
+
+#bottomplaymenuselect {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  size: 28px;
+}
+
+.graytext {
+  color: lightgray;
+  size: 28px;
+}
+
+#tripletext {
+  display: none;
+}
+
+#dialogue {
+  margin-left: 280px;
+  margin-right: auto;
+  size: 28px;
+}
+
+.battlethumbed {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 14px;
+  width: 52px;
+  image-rendering: pixelated;
+}
+
+.battlealign {
+  position: relative;
+}
+
+#krisBattle {
+  position: absolute;
+  top: 1px;
+  left: 100px;
+  image-rendering: pixelated;
+}
+
+#susieBattle {
+  position: absolute;
+  top: 1px;
+  left: 100px;
+  image-rendering: pixelated;
+}
+
+#ralseiBattle {
+  position: absolute;
+  top: 1px;
+  left: 100px;
+  image-rendering: pixelated;
+}
+
+.crop {
+  height: 100px;
+  width: 100px;
 }
 
 /* canvas {

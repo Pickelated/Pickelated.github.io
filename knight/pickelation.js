@@ -488,12 +488,14 @@ function mainMenu() {
         playmenu = true;
 
         document.getElementById("title").style.display = "none";
-        document.getElementById("play").style.display = "block";
+        document.getElementById("play").style.display = "flex";
 
-        // audSelect.play();
-        // audSelect.currentTime = 0;
-        // bossMusic.play();
-        // bossMusic.currentTime = 0;
+        audSelect.play();
+        audSelect.currentTime = 0;
+
+        bossMusic.loop = true;
+        bossMusic.play();
+        bossMusic.currentTime = 0;
       }
       else if (z == 4) { //sfx
         if (sfxcheck) {
@@ -548,7 +550,6 @@ function mainMenu() {
 
 function playMenu() {
   if (playmenu == true) {
-    console.log("hi");
     if (shiftexit == true && event.key == "Q") { //quit
 
       document.getElementById("play").style.display = "none";
@@ -557,6 +558,9 @@ function playMenu() {
       mainmenu = true;
       playmenu = false;
 
+      bossMusic.pause();
+      bossMusic.currentTime = 0;
+      
       audSelect.play();
       audSelect.currentTime = 0;
 
