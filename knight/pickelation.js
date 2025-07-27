@@ -17,6 +17,8 @@ let check = 0; //HATE
 let sfxcheck = true; //sfx check WHATT
 let musiccheck = true; //guess
 let shiftexit = false;
+let dialogexit = false;
+let textLooping = false;
 let mainmenu = true;
 let playmenu = false;
 let loadoutmenu = false;
@@ -490,6 +492,8 @@ function mainMenu() {
         document.getElementById("title").style.display = "none";
         document.getElementById("play").style.display = "flex";
 
+        textLoop("* The Roaring Knight appeared.", "dialog");
+
         audSelect.play();
         audSelect.currentTime = 0;
 
@@ -564,6 +568,9 @@ function playMenu() {
       audSelect.play();
       audSelect.currentTime = 0;
 
+    }
+    if (event.key == "j" || event.key == "z") {
+      
     }
   }
 }
@@ -1024,6 +1031,35 @@ function equipmentMenuingMenu() {
   }
 }
 
+async function textLoop(text, id) {
+  textLooping = true;
+  for (let chif = 0; chif <= text.length; chif++) {
+    
+    document.getElementById(id).innerHTML = text.substring(0, chif);
+
+    if (dialogexit == true) {
+      document.getElementById(id).innerHTML = text;
+      chif += 100;
+      dialogexit = false;
+    }
+
+    await delay(30);
+
+    if (dialogexit == true) {
+      document.getElementById(id).innerHTML = text;
+      chif += 100;
+      dialogexit = false;
+    }
+  }
+  textLooping = false;
+}
+
+function delay(ms) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, ms);
+  });
+}
+
 
 document.addEventListener('keydown', (event) => {
   console.log(`Key pressed: ${event.key}`);
@@ -1032,6 +1068,11 @@ document.addEventListener('keydown', (event) => {
   if (event.key == "Shift") {
     shiftexit = true;
   }
+
+  if ((event.key == "x" || event.key == "k") && textLooping == true) {
+    dialogexit = true;
+  }
+
 
 
   playMenu();
