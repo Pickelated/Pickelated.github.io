@@ -16,6 +16,8 @@ let arrStat = 0; // ARR STAT INVETORY
 let check = 0; //HATE
 let sfxcheck = true; //sfx check WHATT
 let musiccheck = true; //guess
+let battleIndex = 1;
+let playActionIndex = 1;
 let shiftexit = false;
 let dialogexit = false;
 let textLooping = false;
@@ -493,6 +495,7 @@ function mainMenu() {
         document.getElementById("play").style.display = "flex";
 
         textLoop("* The Roaring Knight appeared.", "dialog");
+        playerAction(battleIndex);
 
         audSelect.play();
         audSelect.currentTime = 0;
@@ -554,6 +557,9 @@ function mainMenu() {
 
 function playMenu() {
   if (playmenu == true) {
+
+    krisAction();
+
     if (shiftexit == true && event.key == "Q") { //quit
 
       document.getElementById("play").style.display = "none";
@@ -570,6 +576,12 @@ function playMenu() {
 
     }
     if (event.key == "j" || event.key == "z") {
+      
+    }
+    if (event.key == "k" || event.key == "x") {
+      
+    }
+    if (event.key == "l" || event.key == "c") {
       
     }
   }
@@ -1029,6 +1041,83 @@ function equipmentMenuingMenu() {
       audSelect.currentTime = 0;
     }
   }
+}
+
+
+function playerAction(num) {
+  if (num == 1) { // kris
+    document.getElementById("krisBattleThumb").style.transform = "translate(0px, -47px)";
+    document.getElementById("krisBattleThumbImage").style.transform = "translate(0px, -47px)";
+
+    document.getElementById("krisBattleThumb").style.border = "3px solid #00fffb";
+    document.getElementById("krisBattleThumb").style.borderBottom = "3px solid #00fffb";
+    document.getElementById("krisAction").style.borderRight = "3px solid #00fffb";
+    document.getElementById("krisAction").style.borderLeft = "3px solid #00fffb";
+    document.getElementById("krisAction").style.visibility = "visible";
+
+    document.getElementById("action1").src = "assets/fightHover.png";
+  }
+  else if (num == 2) { //sus
+
+  }
+  else if (num == 3) { //ralsei
+
+  }
+}
+
+function getActionIndex(num, bal) {
+  if (num == 1) {
+    return "assets/fight";
+  }
+  else if (num == 2) {
+    if (bal == true) {
+      return "assets/act";
+    }
+    else {
+      return "assets/magic";
+    }
+  }
+  else if (num == 3) {
+    return "assets/item";
+  }
+  else if (num == 4) {
+    return "assets/spare";
+  }
+  else if (num == 5) {
+    return "assets/defend";
+  }
+}
+
+function krisAction() {
+  if ((event.key == "ArrowLeft" || event.key == "a") && playActionIndex > 1) {
+    document.getElementById("action" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, true) + "Hover.png";
+    document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
+
+    playActionIndex--;
+
+    audMove.play();
+    audMove.currentTime = 0;
+  }
+  if ((event.key == "ArrowRight" || event.key == "d") && playActionIndex < 5) {
+    document.getElementById("action" + (playActionIndex + 1)).src = getActionIndex(playActionIndex + 1, true) + "Hover.png";
+    document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
+
+    playActionIndex++;
+
+    audMove.play();
+    audMove.currentTime = 0;
+  }
+  if (event.key == "z" || event.key == "j") {
+    
+  }
+}
+
+function susieAction() {
+
+}
+
+function ralseiAction() {
+
 }
 
 async function textLoop(text, id) {
