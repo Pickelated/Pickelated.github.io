@@ -300,6 +300,7 @@ p {
 .battlethumbs {
   width: 320px;
   image-rendering: pixelated;
+  transition: "all 0.15s linear"; 
 }
 
 #bottomplaymenuselect {
@@ -312,11 +313,15 @@ p {
 
 .graytext {
   color: lightgray;
-  font-size: 24px;
 }
 
 #tripletext {
   display: none;
+  justify-content: center;
+}
+
+#tripletext * {
+  text-align: left;
 }
 
 #dialogue {
@@ -333,6 +338,7 @@ p {
   left: 14px;
   width: 52px;
   image-rendering: pixelated;
+  transition: "all 0.15s linear"; 
 }
 
 .battlealign {
@@ -345,6 +351,7 @@ p {
   top: 13px;
   padding-top: 2px;
   visibility: hidden;
+  transition: "all 0.15s linear"; 
 }
 
 .battleselectthumb {

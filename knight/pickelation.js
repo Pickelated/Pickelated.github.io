@@ -1044,8 +1044,13 @@ function equipmentMenuingMenu() {
 }
 
 
-function playerAction(num) {
+async function playerAction(num) {
   if (num == 1) { // kris
+
+    document.getElementById("krisBattleThumb").style.transition = "all 0.15s linear"; 
+    document.getElementById("krisBattleThumbImage").style.transition = "all 0.15s linear";
+    document.getElementById("krisAction").style.transition = "all 0.15s linear";
+    await delay(1);
     document.getElementById("krisBattleThumb").style.transform = "translate(0px, -47px)";
     document.getElementById("krisBattleThumbImage").style.transform = "translate(0px, -47px)";
 
@@ -1089,7 +1094,7 @@ function getActionIndex(num, bal) {
 }
 
 function krisAction() {
-  if ((event.key == "ArrowLeft" || event.key == "a") && playActionIndex > 1) {
+  if ((event.key == "ArrowLeft" || event.key == "a") && playActionIndex > 1) { //top nav
     document.getElementById("action" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, true) + "Hover.png";
     document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
 
@@ -1107,8 +1112,27 @@ function krisAction() {
     audMove.play();
     audMove.currentTime = 0;
   }
-  if (event.key == "z" || event.key == "j") {
-    
+  if (event.key == "z" || event.key == "j") { //top select
+    if (playActionIndex == 1) {
+      document.getElementById("tripletext").style.display = "flex";
+      document.getElementById("dialogue").style.display = "none";
+    }
+    else if (playActionIndex == 2) {
+      document.getElementById("tripletext").style.display = "flex";
+      document.getElementById("dialogue").style.display = "none";
+    }
+    else if (playActionIndex == 3) {
+      document.getElementById("tripletext").style.display = "flex";
+      document.getElementById("dialogue").style.display = "none";
+    }
+    else if (playActionIndex == 4) {
+      document.getElementById("tripletext").style.display = "flex";
+      document.getElementById("dialogue").style.display = "none";
+    }
+    else if (playActionIndex == 5) {
+      document.getElementById("tripletext").style.display = "flex";
+      document.getElementById("dialogue").style.display = "none";
+    }
   }
 }
 
