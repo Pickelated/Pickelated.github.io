@@ -19,10 +19,12 @@ html {
 }
 
 body {
-  background: black;
-  text-align: center;
-  margin: 0px;
-  height: 100vh;
+    background: black;
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: none;
   /* cursor: none; */
 }
 
@@ -60,23 +62,23 @@ body {
 }
 
 #alignment {
-  position: relative;
-  display: static;
+    position: relative;
 }
 
 h1 {
   font-size: 82px;
   font-family: title;
-  color: white;
+  color: #FFFFFA;
   margin-top: 75px;
   margin-bottom: 150px;
 }
 
 p {
-  font-size: 32px;
-  margin: 8px;
-  font-family: deltarune;
-  color: white;
+    font-size: 32px;
+    margin: 8px;
+    font-family: deltarune;
+    letter-spacing: 0px;
+    color: #FFFFFA;
 }
 
 #loadout {
@@ -92,7 +94,7 @@ p {
   left: 8px;
 }
 
-#quitinventory {
+.quitinventory {
   position: absolute;
   text-align: left;
   font-family: small;
@@ -300,7 +302,7 @@ p {
 .battlethumbs {
   width: 320px;
   image-rendering: pixelated;
-  transition: "all 0.15s linear"; 
+  transition: all 0.15s linear;
 }
 
 #bottomplaymenuselect {
@@ -312,12 +314,43 @@ p {
 }
 
 .graytext {
-  color: lightgray;
+  color: darkgrey;
+}
+
+.linebreak {
+    line-height: 48px;
+    transform: translateY(-3px);
+}
+
+#singlesoul {
+    position: absolute;
+    width: 23px;
+    top: 15px;
+    left: -25px;
+    image-rendering: pixelated;
+}
+
+#singletext {
+    position: relative;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    font-size: 24px;
+}
+
+#triplesoul {
+    position: absolute;
+    width: 23px;
+    top: 15px;
+    left: -25px;
+    image-rendering: pixelated;
 }
 
 #tripletext {
-  display: none;
-  justify-content: center;
+    position: relative;
+    display: none;
+    justify-content: center;
 }
 
 #tripletext * {
@@ -338,7 +371,7 @@ p {
   left: 14px;
   width: 52px;
   image-rendering: pixelated;
-  transition: "all 0.15s linear"; 
+  transition: all 0.15s linear;
 }
 
 .battlealign {
@@ -351,7 +384,7 @@ p {
   top: 13px;
   padding-top: 2px;
   visibility: hidden;
-  transition: "all 0.15s linear"; 
+  transition: all 0.15s linear;
 }
 
 .battleselectthumb {
@@ -384,10 +417,6 @@ p {
   width: 83px;
   image-rendering: pixelated;
   z-index: 3;
-}
-
-#krisBattleThumb {
-  /* transform: translate(0px, 100px); */
 }
 
 

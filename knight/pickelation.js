@@ -18,9 +18,17 @@ let sfxcheck = true; //sfx check WHATT
 let musiccheck = true; //guess
 let battleIndex = 1;
 let playActionIndex = 1;
+
+let actionMenu = 1; //action menu depth
+let battleActX = 0; // menu indexing
+let battleActY = 0;
+let triplesoulXOffset = -25;
+let triplesoulYOffset = 15;
+
 let shiftexit = false;
 let dialogexit = false;
 let textLooping = false;
+
 let mainmenu = true;
 let playmenu = false;
 let loadoutmenu = false;
@@ -556,17 +564,35 @@ function mainMenu() {
 }
 
 function playMenu() {
-  if (playmenu == true) {
+  if (playmenu === true) {
 
     krisAction();
 
-    if (shiftexit == true && event.key == "Q") { //quit
+    if (shiftexit === true && event.key === "Q") { //quit
 
       document.getElementById("play").style.display = "none";
       document.getElementById("title").style.display = "block";
 
       mainmenu = true;
       playmenu = false;
+
+      battleIndex = 1;
+      playActionIndex = 1;
+      actionMenu = 1;
+
+      document.getElementById("action1").src = "assets/fight.png";
+      document.getElementById("action2").src = "assets/act.png";
+      document.getElementById("action3").src = "assets/item.png";
+      document.getElementById("action4").src = "assets/spare.png";
+      document.getElementById("action5").src = "assets/defend.png";
+
+      document.getElementById("singletext").style.display = "none";
+      document.getElementById("tripletext").style.display = "none";
+      document.getElementById("dialogue").style.display = "block";
+
+      battleActX = 0;
+      triplesoulXOffset = -25;
+      document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
 
       bossMusic.pause();
       bossMusic.currentTime = 0;
@@ -1045,11 +1071,8 @@ function equipmentMenuingMenu() {
 
 
 async function playerAction(num) {
-  if (num == 1) { // kris
+  if (num === 1) { // kris
 
-    document.getElementById("krisBattleThumb").style.transition = "all 0.15s linear"; 
-    document.getElementById("krisBattleThumbImage").style.transition = "all 0.15s linear";
-    document.getElementById("krisAction").style.transition = "all 0.15s linear";
     await delay(1);
     document.getElementById("krisBattleThumb").style.transform = "translate(0px, -47px)";
     document.getElementById("krisBattleThumbImage").style.transform = "translate(0px, -47px)";
@@ -1062,10 +1085,10 @@ async function playerAction(num) {
 
     document.getElementById("action1").src = "assets/fightHover.png";
   }
-  else if (num == 2) { //sus
+  else if (num === 2) { //sus
 
   }
-  else if (num == 3) { //ralsei
+  else if (num === 3) { //ralsei
 
   }
 }
@@ -1094,46 +1117,60 @@ function getActionIndex(num, bal) {
 }
 
 function krisAction() {
-  if ((event.key == "ArrowLeft" || event.key == "a") && playActionIndex > 1) { //top nav
-    document.getElementById("action" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, true) + "Hover.png";
-    document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
+    if (actionMenu === 1) {
+        if ((event.key === "ArrowLeft" || event.key === "a") && playActionIndex > 1) { //top nav
+            document.getElementById("action" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, true) + "Hover.png";
+            document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
 
-    playActionIndex--;
+            playActionIndex--;
 
-    audMove.play();
-    audMove.currentTime = 0;
-  }
-  if ((event.key == "ArrowRight" || event.key == "d") && playActionIndex < 5) {
-    document.getElementById("action" + (playActionIndex + 1)).src = getActionIndex(playActionIndex + 1, true) + "Hover.png";
-    document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
+            audMove.play();
+            audMove.currentTime = 0;
+        }
+        if ((event.key === "ArrowRight" || event.key === "d") && playActionIndex < 5) {
+            document.getElementById("action" + (playActionIndex + 1)).src = getActionIndex(playActionIndex + 1, true) + "Hover.png";
+            document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
 
-    playActionIndex++;
+            playActionIndex++;
 
-    audMove.play();
-    audMove.currentTime = 0;
-  }
-  if (event.key == "z" || event.key == "j") { //top select
-    if (playActionIndex == 1) {
-      document.getElementById("tripletext").style.display = "flex";
-      document.getElementById("dialogue").style.display = "none";
+            audMove.play();
+            audMove.currentTime = 0;
+        }
+        if (event.key === "z" || event.key === "j") { //top select
+            if (playActionIndex === 1) {
+                document.getElementById("singletext").style.display = "block";
+                document.getElementById("dialogue").style.display = "none";
+            }
+            else if (playActionIndex === 2) {
+                document.getElementById("tripletext").style.display = "flex";
+                document.getElementById("dialogue").style.display = "none";
+
+                document.getElementById("tripleone").innerHTML = "Check";
+                document.getElementById("tripletwo").innerHTML = "HoldBreath";
+                document.getElementById("triplethree").innerHTML = "Useless<br>analysis";
+            }
+            else if (playActionIndex === 3) {
+                document.getElementById("tripletext").style.display = "flex";
+                document.getElementById("dialogue").style.display = "none";
+                loadItems(0);
+            }
+            else if (playActionIndex === 4) {
+                document.getElementById("singletext").style.display = "block";
+                document.getElementById("dialogue").style.display = "none";
+            }
+            else if (playActionIndex === 5) {
+
+            }
+            actionMenu = 2;
+        }
     }
-    else if (playActionIndex == 2) {
-      document.getElementById("tripletext").style.display = "flex";
-      document.getElementById("dialogue").style.display = "none";
+    if (actionMenu === 2) {
+        fightAction();
+        krisActAction();
+        itemAction();
+        spareAction();
+        defendAction();
     }
-    else if (playActionIndex == 3) {
-      document.getElementById("tripletext").style.display = "flex";
-      document.getElementById("dialogue").style.display = "none";
-    }
-    else if (playActionIndex == 4) {
-      document.getElementById("tripletext").style.display = "flex";
-      document.getElementById("dialogue").style.display = "none";
-    }
-    else if (playActionIndex == 5) {
-      document.getElementById("tripletext").style.display = "flex";
-      document.getElementById("dialogue").style.display = "none";
-    }
-  }
 }
 
 function susieAction() {
@@ -1143,6 +1180,152 @@ function susieAction() {
 function ralseiAction() {
 
 }
+
+function fightAction() {
+    if (playActionIndex === 1) {
+        if (event.key === "z" || event.key === "j") {
+
+        }
+        if (event.key === "x" || event.key === "k") {
+            document.getElementById("singletext").style.display = "none";
+            document.getElementById("dialogue").style.display = "block";
+            actionMenu = 1;
+        }
+    }
+}
+
+function krisActAction() {
+    if (playActionIndex === 2) {
+        if ((event.key === "ArrowLeft" || event.key === "a") && battleActX > 0) {
+            battleActX--;
+            triplesoulXOffset -= 335;
+            document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+            document.getElementById("triplethree").innerHTML = "Useless<br>Analysis";
+        }
+        if ((event.key === "ArrowRight" || event.key === "d") && battleActX < 1) {
+            battleActX++;
+            triplesoulXOffset += 335;
+            document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+            document.getElementById("triplethree").innerHTML = "";
+        }
+        if (event.key === "z" || event.key === "j") {
+
+        }
+        if (event.key === "x" || event.key === "k") {
+            document.getElementById("tripletext").style.display = "none";
+            document.getElementById("dialogue").style.display = "block";
+            battleActX = 0;
+            triplesoulXOffset = -25;
+            document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+            actionMenu = 1;
+        }
+    }
+}
+
+function susieMagicAction() {
+    if (playActionIndex === 2) {
+        if (event.key === "z" || event.key === "j") {
+
+        }
+        if (event.key === "x" || event.key === "k") {
+            document.getElementById("tripletext").style.display = "none";
+            document.getElementById("dialogue").style.display = "block";
+            actionMenu = 1;
+        }
+    }
+}
+
+function ralseiMagicAction() {
+    if (playActionIndex === 2) {
+        if (event.key === "z" || event.key === "j") {
+
+        }
+        if (event.key === "x" || event.key === "k") {
+            document.getElementById("tripletext").style.display = "none";
+            document.getElementById("dialogue").style.display = "block";
+            actionMenu = 1;
+        }
+    }
+}
+
+function itemAction() {
+    if (playActionIndex === 3) {
+        if ((event.key === "ArrowLeft" || event.key === "a") && battleActX > 0) {
+            battleActX--;
+            triplesoulXOffset -= 335;
+            document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+        }
+        if ((event.key === "ArrowRight" || event.key === "d") && battleActX < 1) {
+            battleActX++;
+            triplesoulXOffset += 335;
+            document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+        }
+        if ((event.key === "ArrowUp" || event.key === "w") && battleActY > 0) {
+            battleActY--;
+            triplesoulYOffset -= 49;
+            document.getElementById("triplesoul").style.top = triplesoulYOffset + "px";
+        }
+        if ((event.key === "ArrowDown" || event.key === "s") && battleActY < 2) {
+            battleActY++;
+            triplesoulYOffset += 49;
+            document.getElementById("triplesoul").style.top = triplesoulYOffset + "px";
+        }
+        if (event.key === "z" || event.key === "j") {
+
+        }
+        if (event.key === "x" || event.key === "k") {
+            document.getElementById("tripletext").style.display = "none";
+            document.getElementById("dialogue").style.display = "block";
+            actionMenu = 1;
+        }
+    }
+}
+
+function loadItems(offset) {
+
+    let column1 = document.getElementById("tripleone");
+    let column2 = document.getElementById("tripletwo");
+
+    column1.innerHTML = "";
+    column2.innerHTML = "";
+
+    let max = 0;
+    if (inventory.length > 6) {
+        max = 6;
+    }
+    else {
+        max = inventory.length;
+    }
+
+    for (let i = 0; i < max; i++) {
+        if (i + offset * 2 < inventory.length && (i + offset * 2) % 2 === 0) {
+            column1.innerHTML += inventory[i + offset * 2].returnName() + "<br>";
+        }
+        if (i + 1 + offset * 2 < inventory.length && (i + 1 + offset * 2) % 2 !== 0) {
+            column2.innerHTML += inventory[i + 1 + offset * 2].returnName() + "<br>";
+        }
+    }
+}
+
+function spareAction() {
+    if (playActionIndex === 4) {
+        if (event.key === "z" || event.key === "j") {
+
+        }
+        if (event.key === "x" || event.key === "k") {
+            document.getElementById("singletext").style.display = "none";
+            document.getElementById("dialogue").style.display = "block";
+            actionMenu = 1;
+        }
+    }
+}
+
+function defendAction() {
+    if (playActionIndex === 5) {
+
+    }
+}
+
 
 async function textLoop(text, id) {
   textLooping = true;
