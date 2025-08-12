@@ -548,7 +548,7 @@ function mainMenu() {
         document.getElementById("title").style.display = "none";
         document.getElementById("inventory").style.display = "block";
 
-        soulx = 147;
+        soulx = -30;
         souly = 11;
 
         mainmenu = false;

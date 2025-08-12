@@ -58,7 +58,7 @@ body {
   width: 24px;
   image-rendering: pixelated;
   top: 11px;
-  left: 147px;
+  left: -30px;
 }
 
 #alignment {
@@ -234,6 +234,10 @@ p {
   justify-content: center;
   margin-top: 24px;
   text-align: left;
+}
+
+#consumablesoulalign {
+    position: relative;
 }
 
 #invAlign {
