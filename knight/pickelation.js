@@ -1264,12 +1264,18 @@ function itemAction() {
         if ((event.key === "ArrowUp" || event.key === "w") && battleActY === 0 && itemOffset > 0) { //top offload
             itemOffset--;
             loadItems(itemOffset);
+            document.getElementById("triplethree").innerHTML =
+                requestItemDesc(battleActX, battleActY, itemOffset);
         }
         if ((event.key === "ArrowDown" || event.key === "s") && battleActY === 2 &&
             requestExists(0, battleActY + 1, itemOffset)) { //bottom offload
             itemOffset++;
             loadItems(itemOffset);
-            if (!requestExists(1, battleActY + 1, itemOffset) && battleActX == 1) {
+            if (battleActX === 0) {
+                document.getElementById("triplethree").innerHTML =
+                    requestItemDesc(battleActX, battleActY, itemOffset);
+            }
+            if (!requestExists(1, battleActY + 1, itemOffset) && battleActX === 1) {
                 battleActX--;
                 triplesoulXOffset -= 335;
                 document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
