@@ -24,6 +24,7 @@ let battleActX = 0; // menu indexing
 let battleActY = 0;
 let triplesoulXOffset = -25;
 let triplesoulYOffset = 15;
+let itemOffset = 0;
 
 let shiftexit = false;
 let dialogexit = false;
@@ -183,15 +184,15 @@ const FlatSoda = new consumable("FlatSoda", "HP: +20", 20);
 const TVSlop = new consumable("TVSlop", "HP: +80", 80);
 const TVDinner = new consumable("TVDinner", "HP: +100", 100);
 const DeluxeDinner = new consumable("DeluxeDinner", "HP: +140", 140);
-const SpaghettiCode = new consumable("SpaghettiCode", "HP: +30 to all", 30);
-const ClubsSandwich = new consumable("ClubsSandwich", "HP: +70 to all", 70);
-const ExecBuffet = new consumable("ExecBuffet", "HP: +100 to all", 100);
-const TopCake = new consumable("TopCake", "HP: +160 to all", 160);
+const SpaghettiCode = new consumable("SpaghettiCode", "HP: +30<br>to all", 30);
+const ClubsSandwich = new consumable("ClubsSandwich", "HP: +70<br>to all", 70);
+const ExecBuffet = new consumable("ExecBuffet", "HP: +100<br>to all", 100);
+const TopCake = new consumable("TopCake", "HP: +160<br>to all", 160);
 const TensionBit = new consumable("TensionBit", "TP: +32%", 32);
 const TensionGem = new consumable("TensionGem", "TP: +50%", 50);
 const TensionMax = new consumable("TensionMax", "TP: +100%", 100);
-const ReviveDust = new consumable("ReviveDust", "Heals all downed to 25%", 10); //+10 hp alive
-const ReviveMint = new consumable("ReviveMint", "Heals downed to max", 0.5); // 50% of max hp alive
+const ReviveDust = new consumable("ReviveDust", "Heals all<br>downed<br>to 25%", 10); //+10 hp alive
+const ReviveMint = new consumable("ReviveMint", "Heals<br>downed<br>to max", 0.5); // 50% of max hp alive
 
 const arrKrisWeapon = [[]];
 const arrSusieWeapon = [[]];
@@ -680,7 +681,7 @@ function inventoryMenu() {
       document.getElementById("inventory").style.display = "none";
 
       document.getElementById("sssoul").style.top = 11 + "px";
-      document.getElementById("sssoul").style.left = 147 + "px";
+      document.getElementById("sssoul").style.left = -30 + "px";
 
       audSelect.play();
       audSelect.currentTime = 0;
@@ -1117,6 +1118,13 @@ function getActionIndex(num, bal) {
 }
 
 function krisAction() {
+    if (actionMenu === 2) {
+        fightAction();
+        krisActAction();
+        itemAction();
+        spareAction();
+        defendAction();
+    }
     if (actionMenu === 1) {
         if ((event.key === "ArrowLeft" || event.key === "a") && playActionIndex > 1) { //top nav
             document.getElementById("action" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, true) + "Hover.png";
@@ -1150,9 +1158,15 @@ function krisAction() {
                 document.getElementById("triplethree").innerHTML = "Useless<br>analysis";
             }
             else if (playActionIndex === 3) {
-                document.getElementById("tripletext").style.display = "flex";
-                document.getElementById("dialogue").style.display = "none";
-                loadItems(0);
+                if (inventory.length >= 1) {
+                    document.getElementById("tripletext").style.display = "flex";
+                    document.getElementById("dialogue").style.display = "none";
+                    loadItems(0);
+                    document.getElementById("triplethree").innerHTML = requestItemDesc(0, 0, 0);
+                }
+                else {
+                    actionMenu--;
+                }
             }
             else if (playActionIndex === 4) {
                 document.getElementById("singletext").style.display = "block";
@@ -1161,15 +1175,8 @@ function krisAction() {
             else if (playActionIndex === 5) {
 
             }
-            actionMenu = 2;
+            actionMenu++;
         }
-    }
-    if (actionMenu === 2) {
-        fightAction();
-        krisActAction();
-        itemAction();
-        spareAction();
-        defendAction();
     }
 }
 
@@ -1250,35 +1257,93 @@ function ralseiMagicAction() {
 
 function itemAction() {
     if (playActionIndex === 3) {
-        if ((event.key === "ArrowLeft" || event.key === "a") && battleActX > 0) {
+        if ((event.key === "z" || event.key === "j")) {
+            console.log(requestItemName(battleActX, battleActY, itemOffset));
+            console.log(requestItemStat(battleActX, battleActY, itemOffset));
+        }
+        if ((event.key === "ArrowUp" || event.key === "w") && battleActY === 0 && itemOffset > 0) { //top offload
+            itemOffset--;
+            loadItems(itemOffset);
+        }
+        if ((event.key === "ArrowDown" || event.key === "s") && battleActY === 2 &&
+            requestExists(0, battleActY + 1, itemOffset)) { //bottom offload
+            itemOffset++;
+            loadItems(itemOffset);
+            if (!requestExists(1, battleActY + 1, itemOffset) && battleActX == 1) {
+                battleActX--;
+                triplesoulXOffset -= 335;
+                document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+                document.getElementById("triplethree").innerHTML =
+                    requestItemDesc(battleActX, battleActY, itemOffset);
+            }
+        }
+
+        if ((event.key === "ArrowLeft" || event.key === "a") && battleActX > 0 &&
+            requestExists(battleActX - 1, battleActY, itemOffset)) {
             battleActX--;
             triplesoulXOffset -= 335;
             document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+            document.getElementById("triplethree").innerHTML =
+                requestItemDesc(battleActX, battleActY, itemOffset);
         }
-        if ((event.key === "ArrowRight" || event.key === "d") && battleActX < 1) {
+        if ((event.key === "ArrowRight" || event.key === "d") && battleActX < 1 &&
+            requestExists(battleActX + 1, battleActY, itemOffset)) {
             battleActX++;
             triplesoulXOffset += 335;
             document.getElementById("triplesoul").style.left = triplesoulXOffset + "px";
+            document.getElementById("triplethree").innerHTML =
+                requestItemDesc(battleActX, battleActY, itemOffset);
         }
-        if ((event.key === "ArrowUp" || event.key === "w") && battleActY > 0) {
+        if ((event.key === "ArrowUp" || event.key === "w") && battleActY > 0 &&
+            requestExists(battleActX, battleActY - 1, itemOffset)) {
             battleActY--;
             triplesoulYOffset -= 49;
             document.getElementById("triplesoul").style.top = triplesoulYOffset + "px";
+            document.getElementById("triplethree").innerHTML =
+                requestItemDesc(battleActX, battleActY, itemOffset);
         }
-        if ((event.key === "ArrowDown" || event.key === "s") && battleActY < 2) {
+        if ((event.key === "ArrowDown" || event.key === "s") && battleActY < 2 &&
+            requestExists(battleActX, battleActY + 1, itemOffset)) {
             battleActY++;
             triplesoulYOffset += 49;
             document.getElementById("triplesoul").style.top = triplesoulYOffset + "px";
-        }
-        if (event.key === "z" || event.key === "j") {
-
+            document.getElementById("triplethree").innerHTML =
+                requestItemDesc(battleActX, battleActY, itemOffset);
         }
         if (event.key === "x" || event.key === "k") {
             document.getElementById("tripletext").style.display = "none";
             document.getElementById("dialogue").style.display = "block";
+            document.getElementById("triplesoul").style.top = "15px";
+            document.getElementById("triplesoul").style.left = "-25px";
+            triplesoulXOffset = -25;
+            triplesoulYOffset = 15;
+            battleActX = 0;
+            battleActY = 0;
+            itemOffset = 0;
             actionMenu = 1;
         }
     }
+}
+
+function requestExists(x, y, offset) {
+    if ((x + y*2 + offset*2) >= inventory.length) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function requestItemDesc(x, y, offset) {
+    return inventory[x + y*2 + offset*2].returnDesc();
+}
+
+function requestItemName(x, y, offset) {
+    return inventory[x + y*2 + offset*2].returnName();
+}
+
+function requestItemStat(x, y, offset) {
+    return inventory[x + y*2 + offset*2].returnStat();
 }
 
 function loadItems(offset) {
