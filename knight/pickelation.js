@@ -567,6 +567,8 @@ function mainMenu() {
 function playMenu() {
   if (playmenu === true) {
 
+    ralseiAction();
+    susieAction();
     krisAction();
 
     if (shiftexit === true && event.key === "Q") { //quit
@@ -1074,6 +1076,13 @@ function equipmentMenuingMenu() {
 async function playerAction(num) {
   if (num === 1) { // kris
 
+      if (inventory.length >= 1) {
+          document.getElementById("action3").style.filter = "grayscale(0)";
+      }
+      else {
+          document.getElementById("action3").style.filter = "grayscale(1)";
+      }
+
     await delay(1);
     document.getElementById("krisBattleThumb").style.transform = "translate(0px, -47px)";
     document.getElementById("krisBattleThumbImage").style.transform = "translate(0px, -47px)";
@@ -1088,9 +1097,45 @@ async function playerAction(num) {
   }
   else if (num === 2) { //sus
 
+      if (inventory.length >= 1) {
+          document.getElementById("saction3").style.filter = "grayscale(0)";
+      }
+      else {
+          document.getElementById("saction3").style.filter = "grayscale(1)";
+      }
+
+      await delay(1);
+      document.getElementById("susieBattleThumb").style.transform = "translate(0px, -47px)";
+      document.getElementById("susieBattleThumbImage").style.transform = "translate(0px, -47px)";
+
+      document.getElementById("susieBattleThumb").style.border = "3px solid #EA79C8";
+      document.getElementById("susieBattleThumb").style.borderBottom = "3px solid #EA79C8";
+      document.getElementById("susieAction").style.borderRight = "3px solid #EA79C8";
+      document.getElementById("susieAction").style.borderLeft = "3px solid #EA79C8";
+      document.getElementById("susieAction").style.visibility = "visible";
+
+      document.getElementById("saction1").src = "assets/fightHover.png";
   }
   else if (num === 3) { //ralsei
 
+      if (inventory.length >= 1) {
+          document.getElementById("raction3").style.filter = "grayscale(0)";
+      }
+      else {
+          document.getElementById("raction3").style.filter = "grayscale(1)";
+      }
+
+      await delay(1);
+      document.getElementById("ralseiBattleThumb").style.transform = "translate(0px, -47px)";
+      document.getElementById("ralseiBattleThumbImage").style.transform = "translate(0px, -47px)";
+
+      document.getElementById("ralseiBattleThumb").style.border = "3px solid #B5E61D";
+      document.getElementById("ralseiBattleThumb").style.borderBottom = "3px solid #B5E61D";
+      document.getElementById("ralseiAction").style.borderRight = "3px solid #B5E61D";
+      document.getElementById("ralseiAction").style.borderLeft = "3px solid #B5E61D";
+      document.getElementById("ralseiAction").style.visibility = "visible";
+
+      document.getElementById("raction1").src = "assets/fightHover.png";
   }
 }
 
@@ -1118,74 +1163,225 @@ function getActionIndex(num, bal) {
 }
 
 function krisAction() {
-    if (actionMenu === 2) {
-        fightAction();
-        krisActAction();
-        itemAction();
-        spareAction();
-        defendAction();
-    }
-    if (actionMenu === 1) {
-        if ((event.key === "ArrowLeft" || event.key === "a") && playActionIndex > 1) { //top nav
-            document.getElementById("action" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, true) + "Hover.png";
-            document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
-
-            playActionIndex--;
-
-            audMove.play();
-            audMove.currentTime = 0;
+    if (battleIndex === 1) {
+        if (actionMenu === 2) {
+            fightAction();
+            krisActAction();
+            itemAction();
+            spareAction();
+            defendAction();
         }
-        if ((event.key === "ArrowRight" || event.key === "d") && playActionIndex < 5) {
-            document.getElementById("action" + (playActionIndex + 1)).src = getActionIndex(playActionIndex + 1, true) + "Hover.png";
-            document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
+        if (actionMenu === 1) {
+            if ((event.key === "ArrowLeft" || event.key === "a") && playActionIndex > 1) { //top nav
+                document.getElementById("action" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, true) + "Hover.png";
+                document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
 
-            playActionIndex++;
+                playActionIndex--;
 
-            audMove.play();
-            audMove.currentTime = 0;
-        }
-        if (event.key === "z" || event.key === "j") { //top select
-            if (playActionIndex === 1) {
-                document.getElementById("singletext").style.display = "block";
-                document.getElementById("dialogue").style.display = "none";
+                audMove.play();
+                audMove.currentTime = 0;
             }
-            else if (playActionIndex === 2) {
-                document.getElementById("tripletext").style.display = "flex";
-                document.getElementById("dialogue").style.display = "none";
+            if ((event.key === "ArrowRight" || event.key === "d") && playActionIndex < 5) {
+                document.getElementById("action" + (playActionIndex + 1)).src = getActionIndex(playActionIndex + 1, true) + "Hover.png";
+                document.getElementById("action" + playActionIndex).src = getActionIndex(playActionIndex, true) + ".png";
 
-                document.getElementById("tripleone").innerHTML = "Check";
-                document.getElementById("tripletwo").innerHTML = "HoldBreath";
-                document.getElementById("triplethree").innerHTML = "Useless<br>analysis";
+                playActionIndex++;
+
+                audMove.play();
+                audMove.currentTime = 0;
             }
-            else if (playActionIndex === 3) {
-                if (inventory.length >= 1) {
+            if (event.key === "z" || event.key === "j") { //top select
+                if (playActionIndex === 1) {
+                    document.getElementById("singletext").style.display = "block";
+                    document.getElementById("dialogue").style.display = "none";
+                } else if (playActionIndex === 2) {
                     document.getElementById("tripletext").style.display = "flex";
                     document.getElementById("dialogue").style.display = "none";
-                    loadItems(0);
-                    document.getElementById("triplethree").innerHTML = requestItemDesc(0, 0, 0);
-                }
-                else {
-                    actionMenu--;
-                }
-            }
-            else if (playActionIndex === 4) {
-                document.getElementById("singletext").style.display = "block";
-                document.getElementById("dialogue").style.display = "none";
-            }
-            else if (playActionIndex === 5) {
 
+                    document.getElementById("tripleone").innerHTML = "Check";
+                    document.getElementById("tripletwo").innerHTML = "HoldBreath";
+                    document.getElementById("triplethree").innerHTML = "Useless<br>analysis";
+                } else if (playActionIndex === 3) {
+                    if (inventory.length >= 1) {
+                        document.getElementById("tripletext").style.display = "flex";
+                        document.getElementById("dialogue").style.display = "none";
+                        loadItems(0);
+                        document.getElementById("triplethree").innerHTML = requestItemDesc(0, 0, 0);
+                    } else {
+                        actionMenu--;
+                    }
+                } else if (playActionIndex === 4) {
+                    document.getElementById("singletext").style.display = "block";
+                    document.getElementById("dialogue").style.display = "none";
+                } else if (playActionIndex === 5) {
+                    battleIndex = 2;
+                    playerAction(battleIndex);
+                    playActionIndex = 1;
+                    actionMenu = 0;
+                    document.getElementById("krisBattleThumb").style.transform = "translate(0px, 0px)";
+                    document.getElementById("krisBattleThumbImage").style.transform = "translate(0px, 0px)";
+
+                    document.getElementById("krisBattleThumb").style.border = "none";
+                    document.getElementById("krisBattleThumb").style.borderBottom = "none";
+                    document.getElementById("krisAction").style.borderRight = "none";
+                    document.getElementById("krisAction").style.borderLeft = "none";
+                    document.getElementById("krisAction").style.visibility = "hidden";
+                }
+                actionMenu++;
             }
-            actionMenu++;
         }
     }
 }
 
 function susieAction() {
+    if (battleIndex === 2) {
+        if (actionMenu === 2) {
+            fightAction();
+            susieMagicAction();
+            itemAction();
+            spareAction();
+            defendAction();
+        }
+        if (actionMenu === 1) {
+            if ((event.key === "ArrowLeft" || event.key === "a") && playActionIndex > 1) { //top nav
+                document.getElementById("saction" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, false) + "Hover.png";
+                document.getElementById("saction" + playActionIndex).src = getActionIndex(playActionIndex, false) + ".png";
 
+                playActionIndex--;
+
+                audMove.play();
+                audMove.currentTime = 0;
+            }
+            if ((event.key === "ArrowRight" || event.key === "d") && playActionIndex < 5) {
+                document.getElementById("saction" + (playActionIndex + 1)).src = getActionIndex(playActionIndex + 1, false) + "Hover.png";
+                document.getElementById("saction" + playActionIndex).src = getActionIndex(playActionIndex, false) + ".png";
+
+                playActionIndex++;
+
+                audMove.play();
+                audMove.currentTime = 0;
+            }
+            if (event.key === "z" || event.key === "j") { //top select
+                if (playActionIndex === 1) {
+                    document.getElementById("singletext").style.display = "block";
+                    document.getElementById("dialogue").style.display = "none";
+                }
+                else if (playActionIndex === 2) {
+                    document.getElementById("tripletext").style.display = "flex";
+                    document.getElementById("dialogue").style.display = "none";
+
+                    document.getElementById("tripleone").innerHTML = "RudeBuster";
+                    document.getElementById("tripletwo").innerHTML = "UltraHeal";
+                    document.getElementById("triplethree").innerHTML = "Rude<br>Damage<br>50% TP";
+                }
+                else if (playActionIndex === 3) {
+                    if (inventory.length >= 1) {
+                        document.getElementById("tripletext").style.display = "flex";
+                        document.getElementById("dialogue").style.display = "none";
+                        loadItems(0);
+                        document.getElementById("triplethree").innerHTML = requestItemDesc(0, 0, 0);
+                    }
+                    else {
+                        actionMenu--;
+                    }
+                }
+                else if (playActionIndex === 4) {
+                    document.getElementById("singletext").style.display = "block";
+                    document.getElementById("dialogue").style.display = "none";
+                }
+                else if (playActionIndex === 5) {
+                    battleIndex = 3;
+                    playerAction(battleIndex);
+                    playActionIndex = 1;
+                    actionMenu = 0;
+                    document.getElementById("susieBattleThumb").style.transform = "translate(0px, 0px)";
+                    document.getElementById("susieBattleThumbImage").style.transform = "translate(0px, 0px)";
+
+                    document.getElementById("susieBattleThumb").style.border = "none";
+                    document.getElementById("susieBattleThumb").style.borderBottom = "none";
+                    document.getElementById("susieAction").style.borderRight = "none";
+                    document.getElementById("susieAction").style.borderLeft = "none";
+                    document.getElementById("susieAction").style.visibility = "hidden";
+                }
+                actionMenu++;
+            }
+        }
+    }
 }
 
 function ralseiAction() {
+    if (battleIndex === 3) {
+        if (actionMenu === 2) {
+            fightAction();
+            ralseiMagicAction();
+            itemAction();
+            spareAction();
+            defendAction();
+        }
+        if (actionMenu === 1) {
+            if ((event.key === "ArrowLeft" || event.key === "a") && playActionIndex > 1) { //top nav
+                document.getElementById("raction" + (playActionIndex - 1)).src = getActionIndex(playActionIndex - 1, false) + "Hover.png";
+                document.getElementById("raction" + playActionIndex).src = getActionIndex(playActionIndex, false) + ".png";
 
+                playActionIndex--;
+
+                audMove.play();
+                audMove.currentTime = 0;
+            }
+            if ((event.key === "ArrowRight" || event.key === "d") && playActionIndex < 5) {
+                document.getElementById("raction" + (playActionIndex + 1)).src = getActionIndex(playActionIndex + 1, false) + "Hover.png";
+                document.getElementById("raction" + playActionIndex).src = getActionIndex(playActionIndex, false) + ".png";
+
+                playActionIndex++;
+
+                audMove.play();
+                audMove.currentTime = 0;
+            }
+            if (event.key === "z" || event.key === "j") { //top select
+                if (playActionIndex === 1) {
+                    document.getElementById("singletext").style.display = "block";
+                    document.getElementById("dialogue").style.display = "none";
+                }
+                else if (playActionIndex === 2) {
+                    document.getElementById("tripletext").style.display = "flex";
+                    document.getElementById("dialogue").style.display = "none";
+
+                    document.getElementById("tripleone").innerHTML = "Pacify";
+                    document.getElementById("tripletwo").innerHTML = "Heal Prayer";
+                    document.getElementById("triplethree").innerHTML = "Spare<br>TIRED foe<br>16% TP";
+                }
+                else if (playActionIndex === 3) {
+                    if (inventory.length >= 1) {
+                        document.getElementById("tripletext").style.display = "flex";
+                        document.getElementById("dialogue").style.display = "none";
+                        loadItems(0);
+                        document.getElementById("triplethree").innerHTML = requestItemDesc(0, 0, 0);
+                    }
+                    else {
+                        actionMenu--;
+                    }
+                }
+                else if (playActionIndex === 4) {
+                    document.getElementById("singletext").style.display = "block";
+                    document.getElementById("dialogue").style.display = "none";
+                }
+                else if (playActionIndex === 5) {
+                    battleIndex = 0;
+                    playActionIndex = 1;
+                    actionMenu = 0;
+                    document.getElementById("ralseiBattleThumb").style.transform = "translate(0px, 0px)";
+                    document.getElementById("ralseiBattleThumbImage").style.transform = "translate(0px, 0px)";
+
+                    document.getElementById("ralseiBattleThumb").style.border = "none";
+                    document.getElementById("ralseiBattleThumb").style.borderBottom = "none";
+                    document.getElementById("ralseiAction").style.borderRight = "none";
+                    document.getElementById("ralseiAction").style.borderLeft = "none";
+                    document.getElementById("ralseiAction").style.visibility = "hidden";
+                }
+                actionMenu++;
+            }
+        }
+    }
 }
 
 function fightAction() {
