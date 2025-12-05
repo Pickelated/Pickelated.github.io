@@ -3,5 +3,7 @@ html {
 }
 
 #window {
+  display: block;
   height: 100%;
+  text-align: center;
 }
