@@ -14,7 +14,7 @@ h1 {
 
 .hello {
   display: block;
-  font-size: 16px;
+  font-size: 20px;
   background: #8ecae6;
   border: 3px solid #023047;
   border-radius: 20px;
@@ -25,7 +25,7 @@ h1 {
 
 .hi {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 250px 250px;
   gap: 20px;
   place-content: center;
 }
