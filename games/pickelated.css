@@ -1,6 +1,6 @@
 body {
   font-family: ABeeZee;
-  font-size: 36px;
+  font-size: 24px;
   background: #219ebc;
   color: #023047;
   text-align: center;
@@ -14,13 +14,13 @@ h1 {
 
 .hello {
   display: block;
-  font-size: 24px;
+  font-size: 16px;
   background: #8ecae6;
   border: 3px solid #023047;
   border-radius: 20px;
   width: fit-content;
   padding: 15px;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 12px auto;
 }
 
 footer {
