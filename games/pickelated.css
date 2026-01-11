@@ -23,6 +23,12 @@ h1 {
   margin: 0 auto 12px auto;
 }
 
+.hi {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 footer {
   display: block;
   margin-top: auto;
