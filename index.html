@@ -12,6 +12,34 @@
     <h1>pickelated website</h1>
     <h2><a href="/games">games</a></h2>
     <h2><a href="/knight">bdslosiykwim</a></h2>
+
+    <script>
+      thecheck = 0;
+
+      document.addEventListener('keydown', (event) => {
+        console.log(`Key pressed: ${event.key}`);
+        console.log(`Key code: ${event.code}`);
+
+
+        if (event.key === "S" || event.key === "N" || event.key === "A" || event.key === "P") {
+          thecheck++;
+        }
+        if (thecheck === 4) {
+          console.log(hello);
+        }
+      });
+
+      document.addEventListener("keyup", (eventup) => {
+        console.log("Key up: " + eventup.key);
+
+
+        if (event.up === "S" || event.up === "N" || event.up === "A" || event.up === "P") {
+          thecheck--;
+        }
+      });
+
+    </script>
+
   </body>
   
 </html>
