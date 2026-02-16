@@ -26,10 +26,10 @@
         console.log(theothercheck);
 
 
-        if (event.key === "s" || event.key === "n" || event.key === "a" || event.key === "p") {
+        if ((event.key.length <= 1) && (event.key === "s" || event.key === "n" || event.key === "a" || event.key === "p")) {
           thecheck++;
         }
-        if (!(event.key === "s" || event.key === "n" || event.key === "a" || event.key === "p")) {
+        if ((event.key.length <= 1) && !(event.key === "s" || event.key === "n" || event.key === "a" || event.key === "p")) {
           theothercheck++;
         }
         if (thecheck === 4 && theothercheck === 0) {
@@ -41,10 +41,10 @@
         console.log("Key up: " + eventup.key);
 
 
-        if (event.up === "s" || event.up === "n" || event.up === "a" || event.up === "p") {
+        if ((event.key.length <= 1) && (eventup.key === "s" || eventup.key === "n" || eventup.key === "a" || eventup.key === "p")) {
           thecheck--;
         }
-        if (!(event.up === "s" || event.up === "n" || event.up === "a" || event.up === "p")) {
+        if ((event.key.length <= 1) && !(eventup.key === "s" || eventup.key=== "n" || eventup.key === "a" || eventup.key === "p")) {
           theothercheck--;
         }
       });
