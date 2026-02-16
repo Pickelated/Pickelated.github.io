@@ -22,7 +22,8 @@
           return;
         }
         console.log(`Key pressed: ${event.key}`);
-        console.log(`Key code: ${event.code}`);
+        console.log(thecheck);
+        console.log(theothercheck);
 
 
         if (event.key === "s" || event.key === "n" || event.key === "a" || event.key === "p") {
@@ -32,7 +33,7 @@
           theothercheck++;
         }
         if (thecheck === 4 && theothercheck === 0) {
-          console.log(hello);
+          console.log("hello");
         }
       });
 
