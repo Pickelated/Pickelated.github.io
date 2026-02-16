@@ -18,6 +18,9 @@
       theothercheck = 0;
 
       document.addEventListener('keydown', (event) => {
+        if (event.repeat) {
+          return;
+        }
         console.log(`Key pressed: ${event.key}`);
         console.log(`Key code: ${event.code}`);
 
