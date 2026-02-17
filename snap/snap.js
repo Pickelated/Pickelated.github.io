@@ -1,6 +1,9 @@
 thecheck = 0;
 theothercheck = 0;
 
+const cling = new Audio("cling.mp3"); // put your sound file here
+cling.volume = 1;
+
 document.addEventListener('keydown', (event) => {
     if (event.repeat) {
       return;
@@ -274,4 +277,22 @@ Matter.Events.on(render, 'afterRender', function() {
     ctx.strokeStyle = 'white';
     ctx.lineWidth = 4;
     ctx.stroke();
+});
+
+Matter.Events.on(engine, "collisionStart", function(event) {
+    event.pairs.forEach(pair => {
+        // relative speed between bodies
+        const relVelX = pair.bodyA.velocity.x - pair.bodyB.velocity.x;
+        const relVelY = pair.bodyA.velocity.y - pair.bodyB.velocity.y;
+        const impactSpeed = Math.sqrt(relVelX * relVelX + relVelY * relVelY);
+
+        // convert speed -> volume (tweak numbers if needed)
+        let volume = impactSpeed / 20; 
+        volume = Math.max(0, Math.min(1, volume)); // clamp 0-1
+
+        // play sound
+        const s = cling.cloneNode(); // allows multiple hits quickly
+        s.volume = volume;
+        s.play();
+    });
 });
