@@ -93,17 +93,50 @@ var boxA = Bodies.rectangle(400, 100, 80, 80, {
     friction: 0.05,
     render: {
         sprite: {
-            texture: "weathered.webp", // <-- put your image path here
+            texture: "weathered.webp", // 
             xScale: 0.078,
             yScale: 0.078
         }
     }
 });
-var boxB = Bodies.rectangle(450, 400, 80, 80, { restitution: 0.8, friction: 0.05 });
-var boxC = Bodies.rectangle(1200, 700, 120, 120, { restitution: 0.8, friction: 0.05 });
+var boxEvil = Bodies.rectangle(500, 100, 80, 80, {
+    restitution: 0.8,
+    friction: 0.05,
+    render: {
+        sprite: {
+            texture: "evilweathered.webp", // 
+            xScale: 0.078,
+            yScale: 0.078
+        }
+    }
+});
+var boxGreen = Bodies.rectangle(600, 100, 80, 80, {
+    restitution: 0.8,
+    friction: 0.05,
+    render: {
+        sprite: {
+            texture: "greenweathered.webp", // 
+            xScale: 0.078,
+            yScale: 0.078
+        }
+    }
+});
+var boxMauve = Bodies.rectangle(500, 100, 80, 80, {
+    restitution: 0.8,
+    friction: 0.05,
+    render: {
+        sprite: {
+            texture: "mauveweathered.webp", // 
+            xScale: 0.078,
+            yScale: 0.078
+        }
+    }
+});
+var boxB = Bodies.rectangle(450, 400, 80, 80, { restitution: 0.8, friction: 0.05, render: {fillStyle: "#219ebc"} });
+var boxC = Bodies.rectangle(1100, 400, 120, 120, { restitution: 0.8, friction: 0.05 });
 var boxD = Bodies.rectangle(810, 100, 180, 80, { restitution: 0.8, friction: 0.05 });
 var circle = Bodies.circle(400, 300, 50, { restitution: 0.8, friction: 0.05, render: {fillStyle: "#f4a261"}});
-var circle2 = Bodies.circle(800, 300, 100, { restitution: 0.8, friction: 0.05 });
+var circle2 = Bodies.circle(800, 300, 100, { restitution: 0.8, friction: 0.05, render: {fillStyle: "#EFA9AE"} });
 var pent = Bodies.polygon(200, 300, 5, 80, { restitution: 0.8, friction: 0.05, render: {fillStyle: "#e9c46a"}});
 var tent = Bodies.polygon(600, 300, 3, 120, { restitution: 0.8, friction: 0.05, render: {fillStyle: "#15616d"}});
 var sent = Bodies.polygon(400, 300, 6, 120, { restitution: 0.8, friction: 0.05, render: {fillStyle: "#bc4749"}});
@@ -137,10 +170,53 @@ Matter.Events.on(engine, 'beforeUpdate', function() {
             y: -pent.mass * g.y * g.scale
         }
     );
+    Body.applyForce(
+        boxC,
+        boxC.position,
+        {
+            x: -boxC.mass * g.x * g.scale,
+            y: -boxC.mass * g.y * g.scale
+        }
+    );
+    Body.applyForce(
+        boxD,
+        boxD.position,
+        {
+            x: -boxD.mass * g.x * g.scale,
+            y: -boxD.mass*0.98 * g.y * g.scale
+        }
+    );
+    Body.applyForce(
+        circle2,
+        circle2.position,
+        {
+            x: -circle2.mass * g.x * g.scale,
+            y: -circle2.mass*0.7 * g.y * g.scale
+        }
+    );
+    Body.applyForce(
+        circle,
+        circle.position,
+        {
+            x: -circle.mass * g.x * g.scale,
+            y: -circle.mass*0.5 * g.y * g.scale
+        }
+    );
+    Body.applyForce(
+        sent,
+        sent.position,
+        {
+            x: -sent.mass * g.x * g.scale,
+            y: -sent.mass * g.y * g.scale
+        }
+    );
 });
 
 // add all of the bodies to the world
-Composite.add(engine.world, [boxA, boxB, boxC, boxD, circle, circle2, circle3, pent, tent, sent, zoid, ...walls]);
+Composite.add(engine.world, [boxA, boxEvil, boxGreen, boxMauve, boxB, boxC, boxD, circle, circle2, 
+    circle3, pent, tent, sent, zoid, ...walls]);
+
+const amigos = [boxEvil, boxGreen, boxMauve];
 
 // run the renderer
 Render.run(render);
@@ -216,7 +292,36 @@ function getMousePos(event) {
     };
 }
 
-window.addEventListener('mousedown', function(event) {
+function getTouchPos(event) {
+    const rect = render.canvas.getBoundingClientRect();
+    const touch = event.touches[0] || event.changedTouches[0];
+
+    return {
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top
+    };
+}
+
+function amigoMotion(amigo) {
+    async function loop() {
+        while (true) {
+
+            const delay = 200 + Math.random() * 2000;
+            await new Promise(r => setTimeout(r, delay));
+
+            const forceX = -800 + Math.random() * 1600;
+            const forceY = -800 + Math.random() * 1600;
+
+            addMomentum(amigo, forceX, forceY);
+        }
+    }
+
+    loop();
+}
+
+amigos.forEach(amigoMotion);
+
+render.canvas.addEventListener('mousedown', function(event) {
     console.log('Mouse down');
     const pos = getMousePos(event);
     x = pos.x;
@@ -224,6 +329,19 @@ window.addEventListener('mousedown', function(event) {
     prevMouse = { x: x, y: y };
     currMouse = { x: pos.x, y: pos.y };
     mousestatus = true;
+});
+window.addEventListener('touchstart', function(event) {
+    const pos = getTouchPos(event);
+
+    x = pos.x;
+    y = pos.y;
+
+    prevMouse = { x: x, y: y };
+    currMouse = { x: pos.x, y: pos.y };
+
+    mousestatus = true;
+
+    event.preventDefault();
 });
 window.addEventListener('mouseup', function(event) {
     console.log('Mouse up');
@@ -235,6 +353,20 @@ window.addEventListener('mouseup', function(event) {
     prevMouse = null;
     currMouse = null;
 });
+window.addEventListener('touchend', function(event) {
+    const pos = getTouchPos(event);
+
+    fx = pos.x;
+    fy = pos.y;
+
+    addMomentum(boxA, x - fx, y - fy * 1.2);
+
+    mousestatus = false;
+    prevMouse = null;
+    currMouse = null;
+
+    event.preventDefault();
+});
 
 // store previous mouse position
 
@@ -244,6 +376,14 @@ window.addEventListener('mouseup', function(event) {
         const pos = getMousePos(event);
         currMouse = { x: pos.x, y: pos.y };
     });
+    window.addEventListener('touchmove', function(event) {
+    if (!mousestatus) return;
+
+    const pos = getTouchPos(event);
+    currMouse = { x: pos.x, y: pos.y };
+
+    event.preventDefault();
+});
 
 Matter.Events.on(render, 'afterRender', function() {
     if (!mousestatus || !prevMouse || !currMouse) return;
@@ -287,7 +427,7 @@ Matter.Events.on(engine, "collisionStart", function(event) {
         const impactSpeed = Math.sqrt(relVelX * relVelX + relVelY * relVelY);
 
         // convert speed -> volume (tweak numbers if needed)
-        let volume = impactSpeed / 20; 
+        let volume = impactSpeed / 30; 
         volume = Math.max(0, Math.min(1, volume)); // clamp 0-1
 
         // play sound
