@@ -2,3 +2,31 @@ body {
     background: #EDE8D0;
     overflow: hidden;
 }
+
+@font-face {
+  font-family: 'cityboy'; 
+  src: url('BUBBLEBO.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'cityman'; 
+  src: url('BUBBLEBOY2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#seconds:hover {
+    cursor: progress;
+}
+
+#seconds {
+    font-family: "cityman";
+    color: #EFA9AE;
+    font-size: 40px;
+    text-shadow: -2px -2px 0 white,
+    2px -2px 0 white,
+    -2px 2px 0 white,
+    2px 2px 0 white;
+}

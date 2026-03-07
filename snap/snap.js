@@ -191,7 +191,7 @@ Matter.Events.on(engine, 'beforeUpdate', function() {
         circle2.position,
         {
             x: -circle2.mass * g.x * g.scale,
-            y: -circle2.mass*0.7 * g.y * g.scale
+            y: -circle2.mass*0.8 * g.y * g.scale
         }
     );
     Body.applyForce(
@@ -321,6 +321,30 @@ function amigoMotion(amigo) {
 
 amigos.forEach(amigoMotion);
 
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+const seconds = document.getElementById("seconds");
+let pinkseconds = -1; //pink circle yeah
+async function counter() {
+        while (true) {
+
+        if (thecirclechecker || circle2.position.y > 724) {
+            pinkseconds = 0;
+            thecirclechecker = false;
+        } else {
+            pinkseconds++;
+        }
+
+        seconds.innerHTML = pinkseconds;
+
+        await sleep(1000);
+        }
+    }
+
 render.canvas.addEventListener('mousedown', function(event) {
     console.log('Mouse down');
     const pos = getMousePos(event);
@@ -419,20 +443,42 @@ Matter.Events.on(render, 'afterRender', function() {
     ctx.stroke();
 });
 
+let thecirclechecker = false; // is the floor hurt?
 Matter.Events.on(engine, "collisionStart", function(event) {
     event.pairs.forEach(pair => {
-        // relative speed between bodies
-        const relVelX = pair.bodyA.velocity.x - pair.bodyB.velocity.x;
-        const relVelY = pair.bodyA.velocity.y - pair.bodyB.velocity.y;
-        const impactSpeed = Math.sqrt(relVelX * relVelX + relVelY * relVelY);
 
-        // convert speed -> volume (tweak numbers if needed)
-        let volume = impactSpeed / 30; 
-        volume = Math.max(0, Math.min(1, volume)); // clamp 0-1
-
-        // play sound
-        const s = cling.cloneNode(); // allows multiple hits quickly
-        s.volume = volume;
-        s.play();
+        // check circle2 hitting floor
+        if (
+            (pair.bodyA === circle2 && pair.bodyB === walls[1]) ||
+            (pair.bodyB === circle2 && pair.bodyA === walls[1])
+        ) {
+            console.log("circle2 hit the floor");
+            thecirclechecker = true;
+            pinkseconds = -1;
+            console.log(circle2.position.y);
+            seconds.innerHTML = "0";
+        }
     });
 });
+counter();
+
+
+
+
+// Matter.Events.on(engine, "collisionStart", function(event) {
+//     event.pairs.forEach(pair => {
+//         // relative speed between bodies
+//         const relVelX = pair.bodyA.velocity.x - pair.bodyB.velocity.x;
+//         const relVelY = pair.bodyA.velocity.y - pair.bodyB.velocity.y;
+//         const impactSpeed = Math.sqrt(relVelX * relVelX + relVelY * relVelY);
+
+//         // convert speed -> volume (tweak numbers if needed)
+//         let volume = impactSpeed / 30; 
+//         volume = Math.max(0, Math.min(1, volume)); // clamp 0-1
+
+//         // play sound
+//         const s = cling.cloneNode(); // allows multiple hits quickly
+//         s.volume = volume;
+//         s.play();
+//     });
+// });
