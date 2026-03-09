@@ -1,8 +1,8 @@
 export default function handler(req, res) {
   const gifs = [
-    'pcubed.gif',
-    'prainbow.gif',
-    'pspeed.gif'
+    '/pcubed.gif',
+    '/prainbow.gif',
+    '/pspeed.gif'
   ];
 
   const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
