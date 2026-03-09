@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+
+<script><![CDATA[
+
+const gifs = [
+  "https://pickelated.github.io/pcubed.gif",
+  "https://pickelated.github.io/prainbow.gif",
+  "https://pickelated.github.io/pspeed.gif"
+];
+
+const random = gifs[Math.floor(Math.random()*gifs.length)];
+
+const img = document.createElementNS("http://www.w3.org/2000/svg","image");
+img.setAttribute("href", random);
+img.setAttribute("width","100%");
+img.setAttribute("height","100%");
+document.documentElement.appendChild(img);
+
+]]></script>
+
+</svg>
