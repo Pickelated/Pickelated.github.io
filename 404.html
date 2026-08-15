@@ -5,10 +5,133 @@
     <title>pickelated</title>
     <link rel="icon" type="image/x-icon" href="/games/pickelatedd.png">
     <link rel="stylesheet" href="style.css">
-    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
   </head>
 
   <body>
-    <h2>this page does not exist <span style="font-size: 12px"><i>(yet?)</i></span></h2>
+  <div id="center">
+    <div id="fouro">
+        <img src="/games/pickelated.png" alt="404" id="pk">
+        <div id="rainbowContainer">
+            <div class="mask" style="left: -166px; top: -166px;">
+                <img src="/public/colorwheel.png" alt="404" class="pkmask">
+            </div>
+            <div class="mask" style="top: -154px; left: -166px;">
+                <img src="/public/colorwheel.png" alt="404" class="pkmask">
+            </div>
+            <div class="mask" style="top: -166px; left: -154px;">
+                <img src="/public/colorwheel.png" alt="404" class="pkmask">
+            </div>
+            <div class="mask" style="top: -154px; left: -154px;">
+                <img src="/public/colorwheel.png" alt="404" class="pkmask">
+            </div>
+        </div>
+    </div>
+  </div>
   </body>
+
+    <style>
+        body {
+            background: #b7d6c1;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+        @font-face {
+            font-family: 'cityman';
+            src: url('./snap/BUBBLEBOY2.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        #center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .mask {
+            position: absolute;
+            width: 640px;
+            height: 640px;
+            top: -160px;
+            left: -160px;
+            z-index: -1;
+            mask-image: url(/games/pickelated.png);
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: 50%;
+        }
+        .pkmask {
+            position: absolute;
+            width: 640px;
+            top: 0px;
+            left: 0px;
+            opacity: 0.8;
+            pointer-events: none;
+            user-select: none;
+            animation: spin 5s linear infinite;
+            left: 25px;
+        }
+        #pk {
+            image-rendering: pixelated;
+            width: 320px;
+            pointer-events: none;
+            user-select: none;
+            filter: drop-shadow(2px 2px 0 whitesmoke)
+            drop-shadow(-2px 2px 0 whitesmoke)
+            drop-shadow(2px -2px 0 whitesmoke)
+            drop-shadow(-2px -2px 0 whitesmoke);
+            transition: filter 0.3s ease-in;
+        }
+        #fouro {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            cursor: grab;
+        }
+        #fouro:active {
+            cursor: grabbing;
+        }
+        #rainbowContainer {
+            position: absolute;
+            will-change: opacity;
+            opacity: 0;
+            top: 0;
+            transition: opacity 0.3s ease-out;
+            z-index: -1;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        const pk = document.getElementById('pk');
+        const fouro = document.getElementById('fouro');
+        const gay = document.getElementById('rainbowContainer');
+        const squeak = new Audio("/public/joanie.ogg");
+        fouro.addEventListener('mousedown', function(event) {
+            pk.src = "/games/pickelatedd.png";
+            pk.style.filter = "drop-shadow(0px 0px 0 whitesmoke)";
+            gay.style.opacity = "0.9";
+            squeak.play();
+        });
+        fouro.addEventListener('mouseleave', function(event) {
+            pk.src = "/games/pickelated.png";
+            pk.style.filter = "drop-shadow(2px 2px 0 whitesmoke) " + "drop-shadow(-2px 2px 0 whitesmoke) " + "drop-shadow(2px -2px 0 whitesmoke) "  + "drop-shadow(-2px -2px 0 whitesmoke)";
+            gay.style.opacity = "0";
+            squeak.pause();
+        });
+        fouro.addEventListener('mouseup', function(event) {
+            pk.src = "/games/pickelated.png";
+            pk.style.filter = "drop-shadow(2px 2px 0 whitesmoke) " + "drop-shadow(-2px 2px 0 whitesmoke) " + "drop-shadow(2px -2px 0 whitesmoke) "  + "drop-shadow(-2px -2px 0 whitesmoke)";
+            gay.style.opacity = "0";
+            squeak.pause();
+        });
+    </script>
 </html>
