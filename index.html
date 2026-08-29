@@ -11,12 +11,46 @@
   <body>
     <h1>pickelated website</h1>
     <h2><a href="/games">games</a></h2>
+    <h2><a href="/milk">milk</a></h2>
     <h2><a href="/knight">bdslosiykwim</a></h2>
+    <div id="wave">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+        <img class="waves" src="milk/milkwave.png">
+    </div>
 
     <script>
       thecheck = 0;
       theothercheck = 0;
+      const wave = document.getElementById("wave");
+      async function animateOthers() {
+          if (wave.classList.contains("jump")) {
+              wave.classList.remove("jump");
+          }
+          else {
+              wave.classList.add("jump");
+          }
+      }
 
+      function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      async function hi() {
+          await sleep(1500);
+          while (true) {
+              animateOthers();
+              await sleep(5200);
+          }
+      }
+
+      hi();
       document.addEventListener('keydown', (event) => {
         if (event.repeat) {
           return;
