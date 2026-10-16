@@ -1,3 +1,4 @@
+alert("keep pink circle above ground.");
 thecheck = 0;
 theothercheck = 0;
 
